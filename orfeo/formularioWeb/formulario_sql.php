@@ -88,7 +88,7 @@ $sql_tipo="select sgd_tpr_codigo,sgd_tpr_descrip from sgd_tpr_tpdcumento where s
 */
 //Modificacion 12-05-09
 //solo tipo QUEJAS CONTRA SUPERVISADAS (42)
-$sql_tipo="select sgd_tpr_codigo,sgd_tpr_descrip from sgd_tpr_tpdcumento where sgd_tpr_web=1 order by sgd_tpr_descrip";
+/*$sql_tipo="select sgd_tpr_codigo,sgd_tpr_descrip from sgd_tpr_tpdcumento where sgd_tpr_web=1 order by sgd_tpr_descrip";
 $rs_tipo=$db->conn->Execute($sql_tipo);
 $tipo="";
 while (!$rs_tipo->EOF)
@@ -116,7 +116,7 @@ $valor=1;
 $radicado.='</font>
 </strong>';
 $radicado.='<input type="hidden" name="valor_rad" value="'.$valor.'"></input>';
-}
+}*/
 //busqueda avanzada
 if(isset($_POST['busca']))
 {
