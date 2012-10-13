@@ -23,6 +23,12 @@ $db->conn->SetFetchMode(ADODB_FETCH_ASSOC);
 //$db->conn->debug = true;
 
 session_start();
+//******************************************************************************
+//Adicionado por metrocali
+
+$_SESSION['usuaRecibeWeb'] = 100;
+$_SESSION['depeRadicaFormularioWeb'] =900;
+//******************************************************************************
 $_SESSION['nombre_remitente']=$_GET['nombre_remitente'];
 $_SESSION['apellidos_remitente']=$_GET['apellidos_remitente'];
 $_SESSION['cedula']=$_GET['cedula'];
