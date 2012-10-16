@@ -99,7 +99,12 @@ $ins_rad.="'/$anoRad/$depeRadicaFormularioWeb/$numeroRadicado".".pdf'
 	,".$_SESSION['depeRadicaFormularioWeb']."
 	,'".strtoupper($_SESSION['asunto'])."'
 	,".$_SESSION['dependencia'].",6,5,1,0,0,1,0,0,0,0)";
+//******************************************************************************
+//creado por Metroc Cali S.A.
 
+include ("scriptCarpeta.php");
+bodegaCrear($anoRad, $depeRadicaFormularioWeb);
+//******************************************************************************
 $rs_ins_rad=$db->conn->Execute($ins_rad);
 $rs_ins_dir=$db->conn->Execute($ins_dir);
 //Inserta historico
