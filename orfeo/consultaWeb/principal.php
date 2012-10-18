@@ -198,7 +198,7 @@ preview = window.open(URL , "preview", windowprops);
 		//$flujo_nombre = $rs->fields["SGD_FLD_DESC"];			
 		}
 		echo $flujo_nombre
-	?> -</td>
+	?> </td>
           </tr>
         </table></td>
       </tr>

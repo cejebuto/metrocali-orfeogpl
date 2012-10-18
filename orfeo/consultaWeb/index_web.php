@@ -55,7 +55,7 @@ if(session_id()) session_destroy();
 include_once "$ruta_raiz/include/db/ConnectionHandler.php";
 $db = new ConnectionHandler($ruta_raiz);
 $db->conn->SetFetchMode(ADODB_FETCH_ASSOC);
-$db->conn->debug = true;
+//$db->conn->debug = true;
 session_start();
 $fechah = date("dmy") . "_" . time("hms");
 $usua_nuevo=3;
