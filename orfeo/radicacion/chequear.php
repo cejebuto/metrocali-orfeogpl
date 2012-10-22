@@ -136,7 +136,10 @@ CON (<?=$krdTmp?>) FECHA DE RADICACION <?=$fechRadicacion?></font><hr>
   <meta http-equiv="expires" content="99999999999">
   <meta http-equiv="Cache-Control" content="cache">
   <meta http-equiv="Pragma" content="public">
+  <!-- Comentado por Metro Cali s.a.
 <link href="../estilos/orfeo.css" rel="stylesheet" type="text/css">
+  -->
+<link href="<?=$ruta_raiz."".$_SESSION["ESTILOS_PATH"]?>orfeo.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 <!--
 .style1 {font-weight: bold}
