@@ -42,7 +42,11 @@ $xajax->processRequests();
 ?>
 <html>
 <head>
-<link rel="stylesheet" href="<?=$ruta_raiz."/estilos/".$_SESSION["ESTILOS_PATH"]?>/orfeo.css">
+    <!-- Modificacion realizada por Metro Cali s.a.
+    El path de $_SESSION["ESTILOS_PATH"] es /estilos/orfeo28/
+<link rel="stylesheet" href="<?/*=$ruta_raiz."/estilos/".$_SESSION["ESTILOS_PATH"]*/?>/orfeo.css">
+    -->
+<link rel="stylesheet" href="<?=$ruta_raiz."".$_SESSION["ESTILOS_PATH"]?>orfeo.css">
 <script type="text/javascript" language="javascript">
     
 /* 	FUNCION QUE MUESTRA LA VENTANA DE NOVEDADES DE USUARIO
