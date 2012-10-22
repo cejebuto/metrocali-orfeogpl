@@ -18,7 +18,7 @@ session_start();
     
     error_reporting(0);
     
-    define('ADODB_ASSOC_CASE', 2);
+    //define('ADODB_ASSOC_CASE', 2);//Comentado por metro cali s.a. No deja tomar valores al consultar
     
     $krd            = $_SESSION["krd"];
     $dependencia    = $_SESSION["dependencia"];
