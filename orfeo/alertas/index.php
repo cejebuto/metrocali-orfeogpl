@@ -228,7 +228,7 @@ session_start();
     	}
     
     
-    $sql_usu = "SELECT * FROM USUARIO WHERE USUA_LOGIN = 'ADMON'"; //$krd CCASTANEDA FALDANA CLRODRIGUEZ
+    $sql_usu = "SELECT * FROM USUARIO WHERE USUA_LOGIN = '$krd'"; //$krd CCASTANEDA FALDANA CLRODRIGUEZ
     //echo $sql_usu;
     $rs_usu = $db->query($sql_usu);
     if(!$rs_usu->EOF){
