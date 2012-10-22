@@ -13,7 +13,7 @@ session_start();
 
     foreach ($_GET as $key => $valor)   ${$key} = $valor;
     foreach ($_POST as $key => $valor)   ${$key} = $valor;
-    
+
     $nomcarpeta = $_GET["nomcarpeta"];
     
     error_reporting(0);
@@ -37,7 +37,7 @@ session_start();
 
     $db = new ConnectionHandler($ruta_raiz);
     $db->conn->SetFetchMode(ADODB_FETCH_ASSOC);
-    
+    //$db->conn->debug=true;
     include_once("func_date.inc.php");
     
     $ini = '2005-12-23';
@@ -228,12 +228,13 @@ session_start();
     	}
     
     
-    $sql_usu = "SELECT * FROM USUARIO WHERE USUA_LOGIN = '$krd'"; //$krd CCASTANEDA FALDANA CLRODRIGUEZ
+    $sql_usu = "SELECT * FROM USUARIO WHERE USUA_LOGIN = 'ADMON'"; //$krd CCASTANEDA FALDANA CLRODRIGUEZ
     //echo $sql_usu;
     $rs_usu = $db->query($sql_usu);
     if(!$rs_usu->EOF){
     	$usua_codi = $rs_usu->fields["USUA_CODI"];
     	$depe_codi = $rs_usu->fields["DEPE_CODI"];
+        echo "usuarios ".$rs_usu->fields["USUA_LOGIN"]."<br><br>";
     	}
     if($tipo_alerta == 1){
     	$where_usu = " AND r.RADI_USUA_ACTU = '$usua_codi' AND r.RADI_DEPE_ACTU = '$depe_codi'";
@@ -314,7 +315,7 @@ session_start();
     else{
     	$in_rad = "";
     	}
-    	
+    	// METRO CALI S.A. SE AGREGO EL CAMPO SGD_TPR_TIPTERMINO QUE NO EXISTIA CON VALOR PREDETERMINADO 0
     	$sql_rad = "select r.RADI_NUME_RADI AS \"Numero radicado\", 
     				TO_CHAR(r.RADI_FECH_RADI, 'YYYY-MM-DD') AS \"Fecha radicado\", 
     				r.RA_ASUN AS \"Asunto\", 
@@ -354,16 +355,22 @@ session_start();
     	   1=1 ";//se adicono linea porque mostraba todos los documentos y no revisaba el estado maqr 20080418
     
     $sql_num .= $in_rad;
-    
-    $sql_num .=" group by  r.RADI_NUME_RADI, a.RADI_NUME_SALIDA , r.RADI_FECH_RADI , r.RA_ASUN, b.NOMBRE_DE_LA_EMPRESA ,b.SIGLA_DE_LA_EMPRESA
+    /*Comentado por metro cali*/
+    /*$sql_num .=" group by  r.RADI_NUME_RADI, a.RADI_NUME_SALIDA , r.RADI_FECH_RADI , r.RA_ASUN, b.NOMBRE_DE_LA_EMPRESA ,b.SIGLA_DE_LA_EMPRESA
     	  ,t.SGD_TPR_DESCRIP, r.RADI_USU_ANTE , u.USUA_LOGIN , d.DEPE_NOMB , t.SGD_TPR_TERMINO , t.SGD_TPR_TIPTERMINO,a.ANEX_TIPO , a.ANEX_ESTADO , a.ANEX_SALIDA
     having
      a.ANEX_TIPO <> 20 and a.ANEX_ESTADO < 3 and a.ANEX_SALIDA = 1 or a.radi_nume_salida is null";
     /*
     						AND r.RADI_USUA_ACTU = '1'
     						AND r.RADI_DEPE_ACTU = '210'";
-    */
-    
+    *///fin comentado por metro cali
+    /* MODIFICACION POR METROCALI, SE ADICIONA r.RADI_USUA_ACTU, r.RADI_DEPE_ACTU */
+    $sql_num .=" 
+        group by  r.RADI_NUME_RADI, r.RADI_USUA_ACTU, r.RADI_DEPE_ACTU, a.RADI_NUME_SALIDA , r.RADI_FECH_RADI , r.RA_ASUN, b.NOMBRE_DE_LA_EMPRESA ,b.SIGLA_DE_LA_EMPRESA
+    	  ,t.SGD_TPR_DESCRIP, r.RADI_USU_ANTE , u.USUA_LOGIN , d.DEPE_NOMB , t.SGD_TPR_TERMINO , t.SGD_TPR_TIPTERMINO,a.ANEX_TIPO , a.ANEX_ESTADO , a.ANEX_SALIDA
+    having
+     a.ANEX_TIPO <> 20 and a.ANEX_ESTADO < 3 and a.ANEX_SALIDA = 1 or a.radi_nume_salida is null";
+    /* FIN MODIFICACION POR METROCALI,******************************************* */
     $sql_num .= $where_usu;
     
     $rs_num = $db->query($sql_num);
