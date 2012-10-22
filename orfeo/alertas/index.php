@@ -234,7 +234,7 @@ session_start();
     if(!$rs_usu->EOF){
     	$usua_codi = $rs_usu->fields["USUA_CODI"];
     	$depe_codi = $rs_usu->fields["DEPE_CODI"];
-        echo "usuarios ".$rs_usu->fields["USUA_LOGIN"]."<br><br>";
+        
     	}
     if($tipo_alerta == 1){
     	$where_usu = " AND r.RADI_USUA_ACTU = '$usua_codi' AND r.RADI_DEPE_ACTU = '$depe_codi'";
