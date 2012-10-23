@@ -151,8 +151,8 @@ switch ($_GET['var'])
                       DEPARTAMENTO.DPTO_NOMB, MUNICIPIO.MUNI_NOMB ";
 		}break;
 }
-$Rs_clta = $db->conn->Execute($isql); 
-
+//$Rs_clta = $db->conn->Execute($isql); 
+$Rs_clta = $db->query($isql);
 ?>
 <html>
 <head>

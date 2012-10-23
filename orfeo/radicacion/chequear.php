@@ -191,7 +191,8 @@ $datos_enviar = session_name()."=".trim(session_id())."&krd=$krd&fechah=$fechah&
   <!--<input name="buscareesp" type="text" class="ecajasfecha" size="20" value=<?php  echo "buscareesp"; ?>>
    <input name="buscareespbot" type=submit class="ebuttons2" value="Limitar EESP">-->
 </form>
-<form name="formulario" method="post" action='chequear.php?<?=session_name()."=".session_id()?>&krd=<?=$krd?>&dependencia=<?=$dependencia?>&krd=<?=$krd?>&faxPath=<?=$faxPath?>'>
+<form name="formulario" method="post" action='chequear.php?<?=session_name()."=".session_id()?>&krd=<?=$krd?>&dependencia=<?=$dependencia?>&krd=<?=$krd?>'>
+<!-- <form name="formulario" method="post" action='chequear.php?<?/*=session_name()."=".session_id()?>&krd=<?=$krd?>&dependencia=<?=$dependencia?>&krd=<?=$krd?>&faxPath=<?=$faxPath*/?>'> -->
   <input type=hidden name=ent value='<?=$ent?>'>
 
 		
@@ -205,7 +206,8 @@ $datos_enviar = session_name()."=".trim(session_id())."&krd=$krd&fechah=$fechah&
 ?>
   </div>
 </form>
-<form action='NEW.php?<?=session_name()."=".trim(session_id())?>&dependencia=<?=$dependencia?>&faxPath=<?=$faxPath?>' method="post" name="form1" class="style1">
+<form action='NEW.php?<?=session_name()."=".trim(session_id())?>&dependencia=<?=$dependencia?>' method="post" name="form1" class="style1">
+<!--<form action='NEW.php?<?/*=session_name()."=".trim(session_id())?>&dependencia=<?=$dependencia?>&faxPath=<?=$faxPath */?>' method="post" name="form1" class="style1"> -->
 <input type='hidden' name='<?=session_name()?>' value='<?=session_id()?>'> 
 <input type=hidden name=ent value='<?=$ent?>'>
 <tr> 
@@ -333,7 +335,7 @@ $whereTrd = "";
 // if($whereTrd) $whereTrd = " AND d.SGD_TRD_CODIGO IN ($whereTrd)"; else $whereTrd = "";
 include "$ruta_raiz/include/query/queryChequear.php";
 $query = $query1;
-$db->debug = true;
+//$db->debug = true;
 $rsCheck=$db->query($query);
 
 
