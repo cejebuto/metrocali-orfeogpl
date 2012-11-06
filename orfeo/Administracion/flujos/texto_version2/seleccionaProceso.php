@@ -1,9 +1,9 @@
 <?
 session_start();
-echo "Post<hr>";
-print_r($_POST);
-echo "Get<hr>";
-print_r($_GET);
+//echo "Post<hr>";
+//print_r($_POST);
+//echo "Get<hr>";
+//print_r($_GET);
 if($_POST["nombreProceso"]) $nombreProceso = $_POST["nombreProceso"];
 if($_POST["codserie"]) $codserie = $_POST["codserie"];
 if($_POST["tsub"]) $tsub = $_POST["tsub"];
@@ -30,7 +30,7 @@ if ( $accion == 1 ) {
 <html>
 <head>
 <title>Untitled Document</title>
-<link rel="stylesheet" href="../../../estilos/orfeo.css">
+<link rel="stylesheet" href="<?=$ruta_raiz."".$_SESSION["ESTILOS_PATH"]?>orfeo.css">
 
 </head>
 <body>
@@ -59,11 +59,12 @@ if ( $accion == 1 ) {
 			<td class="titulos2" height="26">Proceso</td>
 			<td class="listado2" height="1">
 				<?
+                                	$db->conn->debug = true;	
+
 				 	include_once "$ruta_raiz/include/query/flujos/queryProcesos.php";									
 					$rsDep = $db->conn->Execute( $sql );
 					
 					print $rsDep->GetMenu2( "proceso", "", false, false, 0," class='select'" );
-					 $db->conn->debug = false;	
 			?>
 		</td>
 	</tr>

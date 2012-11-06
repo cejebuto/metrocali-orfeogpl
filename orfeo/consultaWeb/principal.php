@@ -16,6 +16,7 @@ $verrad = $idRadicado;
 $ent = substr($idRadicado,-1);
 error_reporting(7);
 $iTpRad = 10;
+$esConsWeb = true;
 include "$ruta_raiz/ver_datosrad.php";
 include "sessionWeb.php";
 /** encriptacion de pagina para inactivar en una Hora
@@ -72,7 +73,6 @@ preview = window.open(URL , "preview", windowprops);
 		TIPO DOCUMENTO
 	</td>
 	<td class="listado2"><?
-        echo $tdoc;
 		$isql = "select SGD_TPR_DESCRIP 
 			FROM SGD_TPR_TPDCUMENTO 
 				where sgd_tpr_codigo='$tdoc'

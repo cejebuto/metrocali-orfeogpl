@@ -35,13 +35,21 @@ return $res;
 
 
 //departamento
-$sql_depto="select distinct * from departamento order by dpto_nomb";
+$sql_depto="select distinct * from departamento where id_pais=170 and dpto_nomb != 'TODOS' order by dpto_nomb"; //MODIFICADO POR METROCALI PARA QUE BUSQUE SOLO LOS DEPARTAMENTOS DE COLOMBIA
 $rs_depto=$db->conn->Execute($sql_depto);
 $depto="";
 while (!$rs_depto->EOF)
-{
+{       
+    if($inicio && $rs_depto->fields['DPTO_NOMB']=="VALLE DEL CAUCA"){//CONDICIÓN AGREGADA POR METRO CALI S.A. PARA EL FORMULARIO WEB
+        $_GET['depto']=$rs_depto->fields['DPTO_CODI'];
+        $depto.="<option selected=\"selected\" value='".$rs_depto->fields['DPTO_CODI']."'>".$rs_depto->fields['DPTO_NOMB']."</option>";
+	$rs_depto->MoveNext();
+        //$inicio = false;
+    }else{
+    
 	$depto.="<option value='".$rs_depto->fields['DPTO_CODI']."'>".$rs_depto->fields['DPTO_NOMB']."</option>";
 	$rs_depto->MoveNext();
+        }
 }
 //municipio
 if(isset($_GET['depto']))
@@ -52,8 +60,15 @@ $rs_muni=$db->conn->Execute($sql_muni);
 $muni="<select name='muni' class='field select medium' tabindex='19'>";
 while (!$rs_muni->EOF)
 {
+    if($inicio && $rs_muni->fields['MUNI_NOMB']=="CALI"){//CONDICIÓN AGREGADA POR METRO CALI S.A. PARA EL FORMULARIO WEB
+        $muni.="<option selected=\"selected\" value='".$rs_muni->fields['MUNI_CODI']."'>".$rs_muni->fields['MUNI_NOMB']."</option>";
+	$rs_muni->MoveNext();
+        $inicio=false;
+    }else {
 	$muni.="<option value='".$rs_muni->fields['MUNI_CODI']."'>".$rs_muni->fields['MUNI_NOMB']."</option>";
 	$rs_muni->MoveNext();
+       
+        }
 }
 $muni.="</select>";
 }

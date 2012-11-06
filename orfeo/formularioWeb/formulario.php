@@ -26,7 +26,7 @@ include "../config.php";
 $_SESSION["depeRadicaFormularioWeb"]=$depeRadicaFormularioWeb;  // Es radicado en la Dependencia 900
 $_SESSION["usuaRecibeWeb"]=$usuaRecibeWeb; // Usuario que Recibe los Documentos Web
 $_SESSION["secRadicaFormularioWeb"]=$secRadicaFormularioWeb; // Osea que usa la Secuencia sec_tp2_900
-
+$inicio = true; //variable añadida por Metro Cali S.A. para colocar predeterminadamente Depto y Muni. (Valle y Cali)
 $db = new ConnectionHandler($ruta_raiz);
 $db->conn->SetFetchMode(ADODB_FETCH_ASSOC);
 //$db->conn->debug = true;
@@ -102,8 +102,8 @@ Campos requeridos ( <font color="#FF0000">*</font> ) </div>
 <li id="foli112" 		class="   ">
   <label class="desc" id="title112" for="label">  Departamento</label>
   <div>
-    <select id="label" 			name="depto" 			class="field select medium" 			tabindex="19" onchange="trae_municipio()">
-      <option value="0" selected="selected"> Seleccione </option>
+    <select id="label" 	name="depto" class="field select medium" tabindex="19" onchange="trae_municipio()">
+      <option value="0" > Seleccione </option>
 		<?=$depto ?>
     </select>
   &nbsp;<font color="#FF0000">*</font></div>
@@ -111,9 +111,10 @@ Campos requeridos ( <font color="#FF0000">*</font> ) </div>
 <li id="foli112" 		class="   ">
   <label class="desc" id="title112" for="label2"> Municipio<img src="images/loading_animated2.gif" width="48" height="48" style="display:none" id="loader1"/></label>
   <div id="div-contenidos">
-    <select id="label2" 			name="muni" 			class="field select medium" 			tabindex="19">
-      <option value="0" 								 selected="selected">Seleccione..</option>
-    </select>
+    <!--<select id="label2" name="muni" class="field select medium" tabindex="19">
+       <option value="0" >Seleccione</option> -->
+      <?=$muni ?>
+    <!-- </select> -->
   &nbsp;<font color="#FF0000">*</font></div>
 </li>
 <li id="foli4" 		class="   ">
@@ -151,7 +152,7 @@ Campos requeridos ( <font color="#FF0000">*</font> ) </div>
 
   <label class="desc" id="title109" for="Field109">Tipo de Solicitud </label>
   <div>
-    <select id="tipo" 			name="tipo" 			class="field select maximun" 			tabindex="18">
+    <select id="tipo" name="tipo" class="field select maximun" tabindex="18">
 	  <?= $tipo ?>
     </select>
     &nbsp;<font color="#FF0000">*</font>  </div>

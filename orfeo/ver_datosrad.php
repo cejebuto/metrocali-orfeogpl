@@ -453,5 +453,7 @@ if ($rs && !$rs->EOF )
 	$codigoFldExp = $trdExp->codigoFldExp;
 	$expUsuaDoc = $trdExp->expUsuaDoc;
 	//unset($verradicado);
+        
+        if(esConWeb) $tdoc=$tpdoc_rad; //agregado por metro cali S.A.
 }
 ?>

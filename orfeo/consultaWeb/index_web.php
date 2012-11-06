@@ -82,7 +82,7 @@ if ($numeroRadicado)
 		echo "<script>alert('$mensaje');</script>";
 	} 
 }
-	$krd = "usWeb";
+	$krd = "usWeb";// este usuario debe de exisitir?
 	$datosEnvio = "$fechah&".session_name()."=".trim(session_id())."&ard=$krd";
   ?>
 <form name=formulario action='principal.php?fechah=<?=$datosEnvio?>rad=200590082051111&pasar=no&verdatos=no&idRadicado=<?=$idRadicado?>&estadosTot=<?=md5(date('Ymd'));?>'  method=post >

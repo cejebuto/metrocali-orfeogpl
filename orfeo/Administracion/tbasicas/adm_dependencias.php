@@ -292,7 +292,7 @@ $ADODB_COUNTRECS=true;
 	 $rs = $db->conn->Execute($sql1.$sql3);
 	 $slc_dep4 = $rs->GetMenu2('Slc_dvis[]',$Slc_dvis,false,true,10,'Class="select" id="Slc_dvis"');
 	 $rs = $db->conn->Execute($sql1.$sql3);
-  	 $slc_cont = $Rs_Cont->GetMenu2('idcont1',0,"111: -- Seleccione --",false,0,"id=\"idcont1\" class=\"select\" onchange=\"borra_datos(this.form);cambia(this.form,'idpais1','idcont1')\"");
+  	 $slc_cont = $Rs_Cont->GetMenu2('idcont1',0,"111: -- Seleccione --",false,0,"id=\"idcont1\" class=\"select\" onchange=\"cambia(this.form,'idpais1','idcont1')\"");
 	}
 	else
 	{
