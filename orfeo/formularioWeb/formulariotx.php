@@ -20,13 +20,13 @@ $ADODB_COUNTRECS = false;
 require_once("$ruta_raiz/include/db/ConnectionHandler.php");
 $db = new ConnectionHandler($ruta_raiz);
 $db->conn->SetFetchMode(ADODB_FETCH_ASSOC);
-//$db->conn->debug = true;
+$db->conn->debug = true;
 
 session_start();
 //******************************************************************************
 //Adicionado por metrocali
 
-$_SESSION['usuaRecibeWeb'] = 100;
+$_SESSION['usuaRecibeWeb'] = 3;
 $_SESSION['depeRadicaFormularioWeb'] =900;
 //******************************************************************************
 $_SESSION['nombre_remitente']=$_GET['nombre_remitente'];

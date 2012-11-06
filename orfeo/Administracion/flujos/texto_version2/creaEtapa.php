@@ -49,7 +49,7 @@ $salida = 0;
 <html>
 <head>
 <title>Creación de Proceso</title>
-<link rel="stylesheet" href="../../../estilos/orfeo.css"><script language="JavaScript">
+<link rel="stylesheet" href="<?=$ruta_raiz."".$_SESSION["ESTILOS_PATH"]?>orfeo.css"><script language="JavaScript">
 <!--
 	
 	function validarDatos()

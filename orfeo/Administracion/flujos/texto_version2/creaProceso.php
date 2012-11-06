@@ -1,7 +1,7 @@
 <?
 session_start();
 
-print_r($_POST);
+//print_r($_POST);
 if($_POST["nombreProceso"]) $nombreProceso = $_POST["nombreProceso"];
 if($_POST["codserie"]) $codserie = $_POST["codserie"];
 if($_POST["tsub"]) $tsub = $_POST["tsub"];
@@ -28,30 +28,39 @@ $salida = 0;
 <html>
 <head>
 <title>Creación de Proceso</title>
-<link rel="stylesheet" href="../../../estilos/orfeo.css">
+<!--<link rel="stylesheet" href="../../../estilos/orfeo.css">-->
+<link rel="stylesheet" href="<?=$ruta_raiz."".$_SESSION["ESTILOS_PATH"]?>orfeo.css">
 
 <script language="JavaScript">
-<!--
+//<!--
 	function validarDatos()
 	{ 
 		
-		if(document.frmCrearProceso.nombreProceso.value == "")
-                {       alert("Debe ingresar nombre del Proceso." );
-                        document.frmCrearProceso.nombreProceso.focus();
-                        return false;
-                }
-        if(document.frmCrearProceso.codigoProceso.value == "")
-        {       alert("Debe ingresar el codigo del Proceso." );
-                document.frmCrearProceso.codigoProceso.focus();
-                return false;
-        }
-	 	if(document.frmCrearProceso.codigoProceso.value == "")
-        {       alert("Debe ingresar el codigo del Proceso." );
-                document.frmCrearProceso.codigoProceso.focus();
-                return false;
-        }
-	 	document.form1.submit();
+            if(document.frmCrearProceso.nombreProceso.value == "")
+            {       alert("Debe ingresar nombre del Proceso." );
+                    document.frmCrearProceso.nombreProceso.focus();
+                    return false;
+            }
+            if(document.frmCrearProceso.codigoProceso.value == "")
+            {       alert("Debe ingresar el codigo del Proceso." );
+                    document.frmCrearProceso.codigoProceso.focus();
+                    return false;
+            }
+            if(document.frmCrearProceso.codigoProceso.value == "")
+            {       alert("Debe ingresar el codigo del Proceso." );
+                    document.frmCrearProceso.codigoProceso.focus();
+                    return false;
+            }
+            document.form1.submit();
 	}
+        
+        function validarDatosSeries(){ // agregado por Metrocali S.A.
+            if(document.frmCrearProceso.codserie.value!="" &&
+               document.frmCrearProceso.tsub.value!=0 ){
+               document.frmCrearProceso.tsub.value=0;
+            }
+            document.frmCrearProceso.submit();
+        }
 
 	
 //-->
@@ -65,7 +74,7 @@ include_once "$ruta_raiz/include/db/ConnectionHandler.php";
 $db = new ConnectionHandler( "$ruta_raiz" );
 if (!defined('ADODB_FETCH_ASSOC'))define('ADODB_FETCH_ASSOC',2);
 $ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
-$db->conn->debug = true;
+//$db->conn->debug = true;
 //<form name='frmCrear' action='<?=$action
 	$resultadoInsercion = 1;
 //		include "$ruta_raiz/debugger.php";
@@ -119,7 +128,9 @@ $db->conn->debug = true;
 				$rsD=$db->conn->query($querySerie);
 				$comentarioDev = "Muestra las Series Docuementales";
 				include "$ruta_raiz/include/tx/ComentarioTx.php";
-				print $rsD->GetMenu2("codserie", $codserie, "0:-- Seleccione --", false,"","onChange='submit()' class='select'" );
+                                // Modificado por Metrocali S.A.
+				//print $rsD->GetMenu2("codserie", $codserie, "0:-- Seleccione --", false,"","onChange='submit()' class='select'" );
+                                print $rsD->GetMenu2("codserie", $codserie, "0:-- Seleccione --", false,"","onChange='validarDatosSeries()' class='select'" );
 			 ?>
 				</td>
 		 	

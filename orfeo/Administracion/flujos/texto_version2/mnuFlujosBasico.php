@@ -1,8 +1,8 @@
 <?
-	$ruta_raiz = "../..";
+	$ruta_raiz = "../../.."; //Modificado por Metrocali S.A. 
 	session_start();
 //	if( !$dependencia or !$tpDepeRad ) include "$ruta_raiz/rec_session.php";
-	$phpsession = session_name()."=".session_id();
+	$phpsession = session_name()."=".session_id();        
 /*
 	//MODIFICACION SKINA
 	require_once("$ruta_raiz/include/db/ConnectionHandler.php");
@@ -19,7 +19,9 @@ echo("$krd");*/
 <html>
 <head>
 <title>Documento sin t&iacute;tulo</title>
-<link rel="stylesheet" href="../../../estilos/orfeo.css">
+<!-- Modificado por Metrocali S.A.
+<link rel="stylesheet" href="../../../estilos/orfeo.css"> -->
+<link rel="stylesheet" href="<?=$ruta_raiz."".$_SESSION["ESTILOS_PATH"]?>orfeo.css"> 
 </head>
 <body>
 <form name='frmMnuFlujos' action='../../formAdministracion.php?<?=session_name()."=".session_id()?>&krd=<?=$krd?>' method="post">

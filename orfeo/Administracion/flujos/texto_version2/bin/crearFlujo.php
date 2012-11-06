@@ -4,6 +4,7 @@
 <meta HTTP-EQUIV="expires" CONTENT="0">
 </head>
 <body>
+    <? $session = $PHPSESSID; // Agregado por Metrocali S.A. ?>
 <APPLET  
 ARCHIVE="jgraph.jar"
 CODE=co.gov.superservicios.orfeo.flujos.java.editorFlujos.class

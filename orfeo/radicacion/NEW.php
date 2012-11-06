@@ -68,8 +68,8 @@ $nombreTp3 = $tip3Nombre[3][$ent];
 <title>.:: Orfeo Modulo de Radicaci&acuoteo;n::.</title>
 <meta http-equiv="expires" content="99999999999">
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" href="../estilos/tabber.css" TYPE="text/css" MEDIA="screen">
-<link rel="stylesheet" href="../estilos/orfeo.css" type="text/css">
+<link rel="stylesheet" href="<?=$ruta_raiz."".$_SESSION["ESTILOS_PATH"]?>tabber.css" TYPE="text/css" MEDIA="screen">
+<link rel="stylesheet" href="<?=$ruta_raiz."".$_SESSION["ESTILOS_PATH"]?>orfeo.css" type="text/css">
 <SCRIPT Language="JavaScript" src="../js/crea_combos_2.js"></SCRIPT>
 <script type="text/javascript" src="../js/tabber.js"></script>
 <script language="JavaScript">

@@ -72,11 +72,12 @@ preview = window.open(URL , "preview", windowprops);
 		TIPO DOCUMENTO
 	</td>
 	<td class="listado2"><?
+        echo $tdoc;
 		$isql = "select SGD_TPR_DESCRIP 
 			FROM SGD_TPR_TPDCUMENTO 
 				where sgd_tpr_codigo='$tdoc'
 			";
-		//$db->conn->debug=false;
+		$db->conn->debug=true;
 		$rs=$db->query($isql);
 		if  (!$rs->EOF) 
 		{

@@ -8,7 +8,7 @@
 	//$db->conn->debug = true;
 	$db->conn->SetFetchMode(ADODB_FETCH_ASSOC);
 	$objTipoDocto = new TipoDocumento($db);
-
+        
 	$nombre_us1 = "";$nombre_us2 = "";$nombre_us3 = "";
 	$prim_apel_us1 = ""; $prim_apel_us2 = ""; $prim_apel_us3 = "";
 	$seg_apel_us1 = ""; $seg_apel_us2 = ""; $seg_apel_us3 = "";
