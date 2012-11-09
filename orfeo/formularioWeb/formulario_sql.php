@@ -72,6 +72,20 @@ while (!$rs_muni->EOF)
 }
 $muni.="</select>";
 }
+//adicionado por Metro Cali S.A.
+//para seleccionar el tipo de documento de identificación
+
+$list_tipo_doc = "";
+$sql_list_tipo_doc = "select distinct * from tipo_doc_identificacion ";
+$rs_list_tipo_doc=$db->conn->Execute($sql_list_tipo_doc);
+while (!$rs_list_tipo_doc->EOF){
+    $list_tipo_doc.= "<option value='".$rs_list_tipo_doc->fields['TDID_CODI']."'>".$rs_list_tipo_doc->fields['TDID_DESC']."</option>";
+    $rs_list_tipo_doc->MoveNext();
+}
+
+
+//Fin adicionado por Metro Cali S.A.
+
 //entidad
 if(isset($_GET['nit']))
 {

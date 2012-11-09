@@ -68,11 +68,11 @@ include('./formulario_sql.php');
 	enctype="multipart/form-data" method="GET" action="formulariotx.php" name="quejas">
 
 <div class="info">
-	<center><img src='../logoEntidad.gif' ></center>
+	<center><img src='../logoEntidad.gif' height="150" width="150"></center>
 	<h4><?=$db->entidad_largo?></h4>
 	<br />
-	<h4>RECUERDE. Este formulario solo es para registrar <u>quejas contra entidades supervisadas.</u> </h4>
-Campos requeridos ( <font color="#FF0000">*</font> ) </div>
+	<!-- <h4>RECUERDE. Este formulario solo es para registrar <u>quejas contra entidades supervisadas.</u> </h4>
+Campos requeridos ( <font color="#FF0000">*</font> ) --> </div>
 
 <ul>
 		
@@ -92,10 +92,25 @@ Campos requeridos ( <font color="#FF0000">*</font> ) </div>
 
 
 <li id="foli3" 		class="   ">
-	<label class="desc" id="title3" for="Field3">Documento de Identificaci&oacute;n (solo numeros) </label>
-	<div>
-		<input id="Field3" 			name="cedula" 			type="text" 			class="field text medium" 			value="" 			maxlength="255" 			tabindex="3" 	onkeypressS="return alpha(event,numbers)"		/>
-			&nbsp;<font color="#FF0000">*</font></div>
+    <!-- Agregado por Metro Cali S.A. -->
+    <div id="fields-align">
+        <div id="izq">            
+        
+        <label class="desc" id="title31" for="tipo_doc_id"> Tipo de Documento </label>
+        <select id="tipo_doc_id" name='tipo_doc_id' class='field select medium'tabindex="19" >
+            <?=$list_tipo_doc ?> <!-- Agregado por Metro Cali S.A -->
+        </select>
+               
+        </div>
+           
+    <!-- Agregado por Metro Cali S.A -->
+        <div id="der">
+        <label class="desc" id="title3" for="Field3">Documento de Identificaci&oacute;n (solo numeros) </label>        
+        <input id="Field3" name="cedula"class="field text nospin medium"  value="" maxlength="20" tabindex="4" onkeyup="validateRange(10, 'digit');" required />
+			&nbsp;<font color="#FF0000">*</font>                       
+        </div>
+    </div>    
+    
 	</li>
 
 

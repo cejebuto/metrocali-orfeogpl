@@ -3,7 +3,7 @@ function trae_municipio()
 	{
 	  document.getElementById('loader1').style.display="block";
       var url = "municipio.php";
-      var pars = "depto="+document.quejas.depto.value;
+      var pars = "depto="+document.quejas.depto.value;      
   	  var ajax = new Ajax.Request( url, {
                                       parameters: pars,
                                       method:"get",

@@ -20,7 +20,7 @@ $ADODB_COUNTRECS = false;
 require_once("$ruta_raiz/include/db/ConnectionHandler.php");
 $db = new ConnectionHandler($ruta_raiz);
 $db->conn->SetFetchMode(ADODB_FETCH_ASSOC);
-$db->conn->debug = true;
+//$db->conn->debug = true;
 
 session_start();
 //******************************************************************************
@@ -127,7 +127,7 @@ $_SESSION['radcom']=$numeroRadicado;
 <p>&nbsp;</p>
 <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
   <tr>
-    <td align="center"><br /><img src="../logoEntidadWeb.gif" width="532" height="128" /></td>
+    <td align="center"><br /><img src="../logoEntidadWeb.gif"  /></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
