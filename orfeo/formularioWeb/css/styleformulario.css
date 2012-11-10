@@ -32,7 +32,7 @@
 }
 .info div
 {
-	color: #555;
+	color: #555;        
 	font-size: 95%;
 	line-height: 135%;
 }
@@ -253,12 +253,19 @@ input.text,input.search,input.file,textarea.textarea,select.select
 }
 input.text,input.search,textarea.textarea
 {
-	background: #fff url(../images/fieldbg.gif) repeat-x top;
+    
+	/*background: url(../images/fieldbg.gif) repeat-x top;*/
 	border-bottom: 1px solid #ddd;
 	border-left: 1px solid #c3c3c3;
 	border-right: 1px solid #c3c3c3;
-	border-top: 1px solid #7c7c7c;
+	border-top: 1px solid #7c7c7c;    
+    
+    background-image: url(../images/fieldbg.gif) ;
+    background-repeat: repeat-x;
+    background-position: top center;
+    background-color: #ffb10f;
 }
+
 input.nospin::-webkit-inner-spin-button,input.nospin::-webkit-outer-spin-button
 {
 	margin: 0;
@@ -266,6 +273,7 @@ input.nospin::-webkit-inner-spin-button,input.nospin::-webkit-outer-spin-button
 }
 select.select
 {
+    background-color: #ffb10f;
 	padding: 1px 0 0 0;
 }
 input.search
