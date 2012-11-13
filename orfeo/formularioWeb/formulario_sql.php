@@ -57,7 +57,7 @@ if(isset($_GET['depto']))
 $sql_muni="select distinct * from municipio where dpto_codi=".$_GET['depto']." order by muni_nomb";
 //$db->conn->debug = true;
 $rs_muni=$db->conn->Execute($sql_muni);
-$muni="<select name='muni' class='field select medium' tabindex='19'>";
+$muni="<select name='muni' class='field select medium' tabindex=''>";
 while (!$rs_muni->EOF)
 {
     if($inicio && $rs_muni->fields['MUNI_NOMB']=="CALI"){//CONDICIÓN AGREGADA POR METRO CALI S.A. PARA EL FORMULARIO WEB

@@ -102,18 +102,19 @@ include('./formulario_sql.php');
                         </span>
                         <p class="instruct" id="instruct5"><small>Ingrese su nombre</small></p>
                     </li>
-                    <li id="foli7" class="notranslate       ">
+                    <!--<li id="foli7" class="notranslate       ">
                         <label class="desc" id="title7" for="Field7">
                             Tipo de Documento
                             <span id="req_7" class="req">*</span>
                         </label>
                         <div>
                             <select id="Field7" name="tipo_doc_id" class="field select medium" tabindex="3" > 
-                                <?=$list_tipo_doc ?>
+                                <?/*=$list_tipo_doc */?>
                             </select>
                         </div>
                         <p class="instruct" id="instruct7"><small>Elija su tipo de documento de identificaci&oacute;n (ej: C.C., Nit, entre otros)</small></p>
                     </li>
+                    -->
                     <li id="foli10" class="notranslate      ">
                         <label class="desc " id="title10" for="Field10">
                             N&uacute;mero de Documento
@@ -129,7 +130,7 @@ include('./formulario_sql.php');
                             <span id="req_8" class="req">*</span>
                         </label>
                         <div>
-                            <select id="label" name="depto" class="field select medium" tabindex="5" onchange="trae_municipio()"> 
+                            <select id="label" name="depto" class="field select medium" tabindex="" onchange="trae_municipio()"> 
                                 <?=$depto ?>
                             </select>
                         </div>
@@ -153,7 +154,7 @@ include('./formulario_sql.php');
                             <span id="req_18" class="req">*</span>
                         </label>
                         <div>
-                            <input id="Field18" name="direccion_remitente" type="text" class="field text large" value="" maxlength="255" tabindex="7" onkeyup="" required />
+                            <input id="Field18" name="direccion_remitente" type="text" class="field text large" value="" maxlength="255" tabindex="5" onkeyup="" required />
                         </div>
                         <p class="instruct" id="instruct18"><small>Ingrese la direcci&oacute;n de recidencia</small></p>
                     </li><li id="foli19" class="notranslate      ">
@@ -161,15 +162,16 @@ include('./formulario_sql.php');
                             N&uacute;mero de telefono
                         </label>
                         <div>
-                            <input id="Field19" class="field text medium" name="telefono_remitente" tabindex="8" type="tel" maxlength="255" value="" /> 
+                            <input id="Field19" class="field text medium" name="telefono_remitente" tabindex="6" type="tel" maxlength="255" value="" /> 
                         </div>
                         <p class="instruct" id="instruct19"><small>Ingrese su n&uacute;mero telefonico</small></p>
                     </li><li id="foli20" class="notranslate      ">
                         <label class="desc" id="title20" for="Field20">
                             Correo electr&oacute;nico
+                            <span id="req_19" class="req">*</span>
                         </label>
                         <div>
-                            <input id="Field20" name="email" type="email" spellcheck="false" class="field text medium" value="" maxlength="255" tabindex="9" /> 
+                            <input id="Field20" name="email" type="email" spellcheck="false" class="field text medium" value="" maxlength="255" tabindex="7" required/> 
                         </div>
                         <p class="instruct" id="instruct20"><small>Ingrese su direcci&oacute;n de correo electronico (ej: juanito@mail.com)</small></p>
                     </li><li id="foli21" class="notranslate section      ">
@@ -183,7 +185,7 @@ include('./formulario_sql.php');
                             <span id="req_22" class="req">*</span>
                         </label>
                         <div>
-                            <select id="Field22" name="tipo" class="field select medium" tabindex="10" required> 
+                            <select id="Field22" name="tipo" class="field select medium" tabindex="8" required> 
                                 <option value="" > Seleccionar </option>
                                 <?= $tipo ?>
                             </select>
@@ -196,7 +198,7 @@ include('./formulario_sql.php');
                           <span id="req_23" class="req">*</span>
                       </label>                        
                       <div>
-                        <input id="label6" name="asunto" type="text" class="field text large" value="" maxlength="255" tabindex="11" required/>
+                        <input id="label6" name="asunto" type="text" class="field text large" value="" maxlength="255" tabindex="9" required/>
                       </div>
                       <p class="instruct" id="instruct20"><small>Ingrese el asunto de su solicitud</small></p>
                     </li>
@@ -210,7 +212,7 @@ include('./formulario_sql.php');
                                 name="desc" 
                                 class="field textarea small" 
                                 rows="10" cols="50"
-                                tabindex="12"
+                                tabindex="10"
                                 required
                                  ></textarea>
                         </div>

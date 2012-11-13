@@ -51,8 +51,9 @@ $_SESSION['asunto']=$_GET['asunto'];
 $_SESSION['desc']=$_GET['desc'];
 $_SESSION['documento_destino']=$_GET['documento_destino'];
 
-if(!$_GET['tipo_doc_id']) {$_GET['tipo_doc_id']=0; echo "no ahi tipo<br>";}
-$_SESSION['tipo_doc_codi'] = $_GET['tipo_doc_id']; // agregado por MetroCali S.A.
+/*if(!$_GET['tipo_doc_id']) {$_GET['tipo_doc_id']=0; echo "no ahi tipo<br>";}
+$_SESSION['tipo_doc_codi'] = $_GET['tipo_doc_id']; // agregado por MetroCali S.A.*/
+
 $numero=substr('000000'.$db->conn->GenID('SECR_TP2_'.$_SESSION['secRadicaFormularioWeb']),-6);
 $num_dir=$db->conn->GenID('SEC_DIR_DIRECCIONES');
 $num_ciu=$db->conn->GenID('SEC_CIU_CIUDADANO');
@@ -65,7 +66,7 @@ $numeroRadicado = date('Y').$_SESSION['depeRadicaFormularioWeb'].$numero."2";
 
 
 //inserta ciudadano
-$ins_ciu="insert into sgd_ciu_ciudadano values(2,".$num_ciu.",'".strtoupper($_SESSION['nombre_remitente'])."','".strtoupper($_SESSION['direccion_remitente'])."','".strtoupper($_SESSION['apellidos_remitente'])."','','".$_SESSION['telefono_remitente']."','".$_SESSION['email']."',".$_SESSION['muni'].",".$_SESSION['depto'].",'".$_SESSION['cedula']."', DEFAULT, DEFAULT,".$_SESSION['tipo_doc_codi'].")";
+$ins_ciu="insert into sgd_ciu_ciudadano values(2,".$num_ciu.",'".strtoupper($_SESSION['nombre_remitente'])."','".strtoupper($_SESSION['direccion_remitente'])."','".strtoupper($_SESSION['apellidos_remitente'])."','','".$_SESSION['telefono_remitente']."','".$_SESSION['email']."',".$_SESSION['muni'].",".$_SESSION['depto'].",'".$_SESSION['cedula']."', DEFAULT, DEFAULT "/*,".$_SESSION['tipo_doc_codi']*/.")";
 //$rs_ins_ciu=$db->conn->Execute($ins_ciu);
 
 
