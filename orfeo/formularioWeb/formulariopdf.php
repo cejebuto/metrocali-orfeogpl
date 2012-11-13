@@ -13,32 +13,53 @@ foreach ($_POST as $key => $valor)   ${$key} = $valor;
 require('barcode.php');
 include('funciones.php');
 
+//*********** AGREGADOR POR METRO CALI S.A.
+$ruta_raiz="..";
+require_once("../include/db/ConnectionHandler.php");
+include($ruta_raiz.'/class_control/Municipio.php');
+$db = new ConnectionHandler($ruta_raiz);
+$db->conn->SetFetchMode(ADODB_FETCH_ASSOC);
+$municlass = new Municipio($db);
+$municlass->municipio_codigo($_SESSION['depto'],$_SESSION['muni'] );
+$muni_nomb = $municlass->get_muni_nomb();
+
+//VARIABLES PARA LOS CAMPOS
+$radi_codi_barras = $_SESSION['entidad']." Rad No. ".$_SESSION['radcom'];
+$radi_fecha_barras = "Fecha: ".date('d')."/".date('m')."/".date('Y')." ".date('h:i:s');
+$radi_ciufech_doc = $muni_nomb.", ".date('d')." de ".nombremes(date('m'))." de ".date('Y');
+//*****************************************
+
+
 $pdf=new PDF_Code39();
 $pdf->AddPage();
 $pdf->Code39(110,45,$_SESSION['radcom'],1,10);
-$pdf->Image('../imagenes/PIEDEPAGINA_1.gif',30,275,160,19);
-$pdf->Image('../logoEntidadWeb.gif',55,10,100,24);
-$pdf->Text(110,63,"Entidad Usuaria de Orfeo Rad No. ".$_SESSION['radcom']);
-$pdf->Text(110,67,"Fecha : ".date('d')."/".date('m')."/".date('Y')." ".date('h:i:s'));
+//$pdf->Image('../imagenes/PIEDEPAGINA_1.gif',30,275,160,19);
+$pdf->Image('../logoEntidadWeb.gif',40,10,50,50);
+$pdf->Text(110,63,$radi_codi_barras);
+$pdf->Text(110,67,$radi_fecha_barras);
 //$pdf->Text(110,71,strtoupper($_SESSION['sigla']));
 //$pdf->Text(110,75,$_SESSION['nit']);
-$pdf->Text(12,87,"Monteria, ".date('d')." de ".nombremes(date('m'))." de ".date('Y'));
-$pdf->Text(12,101,"Senores");
+$pdf->Text(12,87,$radi_ciufech_doc);
+$pdf->Text(12,101,utf8_decode("Señores"));
 $pdf->SetFont('','B');
 $pdf->Text(12,105,$_SESSION['entidad']);
 $pdf->SetFont('','');
-$pdf->Text(12,109,"Ciudad");
+$pdf->Text(12,109,"Cali");
 $pdf->Text(12,119,"Asunto : ".strtoupper($_SESSION['asunto']));
 $pdf->SetXY(11,125);
 $pdf->MultiCell(0,4,$_SESSION['desc'],0);
-$pdf->Text(12,236,"Atentamente,");
+$pdf->Text(12,220,"Atentamente,");
 $pdf->SetFont('','B');
 $pdf->Text(12,246,strtoupper($_SESSION['nombre_remitente'])." ".strtoupper($_SESSION['apellidos_remitente']));
 $pdf->SetFont('','');
 $pdf->Text(12,250,$_SESSION['cedula']);
 $pdf->Text(12,254,$_SESSION['direccion_remitente']);
-$pdf->Text(12,258,$_SESSION['telefono_remitente']);
-$pdf->Text(12,262,$_SESSION['email']);
+if($_SESSION['telefono_remitente']!=0){
+    $pdf->Text(12,258,$_SESSION['telefono_remitente']);
+    $pdf->Text(12,262,$_SESSION['email']);
+}else{
+    $pdf->Text(12,258,$_SESSION['email']);
+}
 //guarda documento en un SERVIDOR
  // $pdf->Output("../bodega/tmp/".$_SESSION['radcom'].".pdf",'F');
 $pdf->Output("../bodega/$rutaPdf",'F');
