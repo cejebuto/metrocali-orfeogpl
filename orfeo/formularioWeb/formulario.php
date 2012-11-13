@@ -36,185 +36,207 @@ include('./formulario_sql.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+        <title>
+            Formulario Solicitudes, Quejas y Reclamos
+        </title>
 
-<title>Formulario QRDP</title>
+        <!-- Meta Tags -->
+        <meta http-equiv="Content-Type" content="text/html; charset= iso-8859-1" />
 
-<!-- Meta Tags -->
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <!-- CSS -->
+        <link href="css/structureformulario.css" rel="stylesheet">
+        <link href="css/styleformulario.css" rel="stylesheet">
+        <link href="css/themeformulario.css" rel="stylesheet">
 
-<!-- CSS -->
-<link rel="stylesheet" href="css/structure.css" type="text/css" />
-<link rel="stylesheet" href="css/form.css" type="text/css" />
+        <!-- JavaScript -->
+        <script src="scripts/wufooformulario.js"></script>
+        <!-- prototype -->
+        <script type="text/javascript" src="prototype.js"></script>
+        <!--funciones-->
+        <script type="text/javascript" src="ajax.js"></script>
 
-<!-- JavaScript -->
-<script type="text/javascript" src="scripts/wufoo.js"></script>
-<!-- prototype -->
-<script type="text/javascript" src="prototype.js"></script>
-<!--funciones-->
-<script type="text/javascript" src="ajax.js"></script>
+        <!--[if lt IE 10]>
+        <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
 
-</head>
+    <body id="public">
+        <div id="container" style="background-image:url(../imagenes/a.gif);">
 
-<body id="public">
-	
-<div id="container" style="background-image:url(../imagenes/logoOrfeoFondo.gif);">
-
-<h1>  &nbsp;</h1>
-
-	<form id="form68" class="wufoo topLabel" autocomplete="off"
-	enctype="multipart/form-data" method="GET" action="formulariotx.php" name="quejas">
-
-<div class="info">
-	<center><img src='../logoEntidad.gif' height="150" width="150"></center>
-	<h4><?=$db->entidad_largo?></h4>
-	<br />
-	<!-- <h4>RECUERDE. Este formulario solo es para registrar <u>quejas contra entidades supervisadas.</u> </h4>
-Campos requeridos ( <font color="#FF0000">*</font> ) --> </div>
-
-<ul>
-		
-	
-<li id="foli0" 		class="   ">
-	<label class="desc" id="title0" for="Field0">
-	
-		Nombre Remitente			</label>
-	<span>
-		<input id="Field0" 			name="nombre_remitente" 			type="text" 			class="field text" 			value="" 			size="20" 			tabindex="1" 		onkeypressS="return alpha(event,letters);"	/>
-		<label for="Field0">Nombres</label>
-	</span>
-	<span>
-		<input id="Field1" 			name="apellidos_remitente" 			type="text" 			class="field text" 			value="" 			size="20" 			tabindex="2" 	onkeypressS="return alpha(event,letters);"		/>&nbsp;<font color="#FF0000">*</font>
-		<label for="Field1">Apellidos</label>
-	</span>	</li>
-
-
-<li id="foli3" 		class="   ">
-    <!-- Agregado por Metro Cali S.A. -->
-    <div id="fields-align">
-        <div id="izq">            
         
-        <label class="desc" id="title31" for="tipo_doc_id"> Tipo de Documento </label>
-        <select id="tipo_doc_id" name='tipo_doc_id' class='field select medium'tabindex="19" >
-            <?=$list_tipo_doc ?> <!-- Agregado por Metro Cali S.A -->
-        </select>
-               
-        </div>
-           
-    <!-- Agregado por Metro Cali S.A -->
-        <div id="der">
-        <label class="desc" id="title3" for="Field3">Documento de Identificaci&oacute;n (solo numeros) </label>        
-        <input id="Field3" name="cedula"class="field text nospin medium"  value="" maxlength="20" tabindex="4" onkeyup="validateRange(10, 'digit');" required />
-			&nbsp;<font color="#FF0000">*</font>                       
-        </div>
-    </div>    
-    
-	</li>
+            
 
+            <form id="form1" class="wufoo leftLabel page" autocomplete="off" 
+                  enctype="multipart/form-data" method="GET" action="formulariotx.php" name="quejas">
 
-<li id="foli112" 		class="   ">
-  <label class="desc" id="title112" for="label">  Departamento</label>
-  <div>
-    <select id="label" 	name="depto" class="field select medium" tabindex="19" onchange="trae_municipio()">
-      <option value="0" > Seleccione </option>
-		<?=$depto ?>
-    </select>
-  &nbsp;<font color="#FF0000">*</font></div>
-</li>
-<li id="foli112" 		class="   ">
-  <label class="desc" id="title112" for="label2"> Municipio<img src="images/loading_animated2.gif" width="48" height="48" style="display:none" id="loader1"/></label>
-  <div id="div-contenidos">
-    <!--<select id="label2" name="muni" class="field select medium" tabindex="19">
-       <option value="0" >Seleccione</option> -->
-      <?=$muni ?>
-    <!-- </select> -->
-  &nbsp;<font color="#FF0000">*</font></div>
-</li>
-<li id="foli4" 		class="   ">
-	<label class="desc" id="title4" for="Field4">
-		Direcci&oacute;n	Remitente		</label>
-	<div>
-		<input id="direccion_remitente" 			name="direccion_remitente" 			type="text" 			class="field text large" 			value="" 			maxlength="255" 			tabindex="4" 			/>
-		&nbsp;<font color="#FF0000">*</font>			</div>
-	</li>
+                <header id="header" class="info">
+                    <center> 
+                        <img src="images/orfeologo.png" height="60" width="200" >
+                            <br>
+                        <a href="http://www.metrocali.gov.co">
+                            <img src='../logoEntidad.gif' height="150" width="190">
+                        </a>
+                    </center>
+                    <h4><?=$db->entidad_largo?></h4>
+                    <h2>Formulario Solicitudes, Quejas y Reclamos</h2>
+                    <div></div>
+                </header>
 
+                <ul>
 
-<li id="foli4" 		class="   ">
-  <label class="desc" id="title4" for="label3"> Tel&eacute;fono	Remitente </label>
-  <div>
-    <input id="label3" 			name="telefono_remitente" 			type="text" 			class="field text large" 			value="" 			maxlength="255" 			tabindex="4">
-  </div>
-</li>
-<li id="foli4" 		class="   ">
-  <label class="desc" id="title4" for="label4"> E-mail	Remitente </label>
-  <div>
-    <input id="label4" 			name="email" 			type="text" 			class="field text large" 			value="" 			maxlength="255" 			tabindex="4">
-  </div>
-</li>
-<li id="foli4" 		class="   ">
-  <label class="desc" id="title4" for="label5">Nit Entidad o Empresa<img src="images/loading_animated2.gif" width="48" height="48" style="display:none" id="loader2"/> (solo numeros) </label>
-  <div>
-    <input id="label5" 			name="nit" 			type="text" 			class="field text large" 			value="" 			maxlength="255" 			tabindex="4"  onchange="trae_entidad()" onkeypress="return alpha(event,numbers);" />
-    &nbsp;<font color="#FF0000">*</font>  </div>
-  <div id="div-contenidos2" style="display:none"></div>
-</li>
-<li id="foli109" 		class="   ">
-<font color="#CCCCCC">___________________________________________________________________________________</font>
-<br />
-&nbsp;
+                    <li id="foli5" class="notranslate      ">
+                        <label class="desc" id="title5" for="Field5">
+                            Nombre del Remitente
+                            <span id="req_5" class="req">*</span>
+                        </label>
+                        <span>
+                            <input id="Field5" name="nombre_remitente" type="text" class="field text fn" value="" size="8" tabindex="1" required />
+                            <label for="Field5">Nombre</label>
+                        </span>
+                        <span>
+                            <input id="Field6" name="apellidos_remitente" type="text" class="field text ln" value="" size="14" tabindex="2" required />
+                            <label for="Field6">Apellidos</label>
+                        </span>
+                        <p class="instruct" id="instruct5"><small>Ingrese su nombre</small></p>
+                    </li>
+                    <!--<li id="foli7" class="notranslate       ">
+                        <label class="desc" id="title7" for="Field7">
+                            Tipo de Documento
+                            <span id="req_7" class="req">*</span>
+                        </label>
+                        <div>
+                            <select id="Field7" name="tipo_doc_id" class="field select medium" tabindex="3" > 
+                                <?/*=$list_tipo_doc */?>
+                            </select>
+                        </div>
+                        <p class="instruct" id="instruct7"><small>Elija su tipo de documento de identificaci&oacute;n (ej: C.C., Nit, entre otros)</small></p>
+                    </li>
+                    -->
+                    <li id="foli10" class="notranslate      ">
+                        <label class="desc " id="title10" for="Field10">
+                            N&uacute;mero de Documento
+                            <span id="req_10" class="req">*</span>
+                        </label>
+                        <div>
+                            <input id="Field10" name="cedula" type="text" class="field text nospin medium"  value="" maxlength="20" tabindex="4" onkeyup="validateRange(10, 'digit');" required />
+                        </div>
+                        <p class="instruct " id="instruct10"><small>Ingrese su n&uacute;mero de identificaci&oacute;n</small></p>
+                    </li><li id="foli8" class="       ">
+                        <label class="desc" id="title8" for="Field8">
+                            Departamento
+                            <span id="req_8" class="req">*</span>
+                        </label>
+                        <div>
+                            <select id="label" name="depto" class="field select medium" tabindex="" onchange="trae_municipio()"> 
+                                <?=$depto ?>
+                            </select>
+                        </div>
+                        <p class="instruct" id="instruct8"><small>Seleccione el Departamento de su recidencia</small></p>
+                    </li>
+                    <li id="foli11" class="       ">
+                        <label class="desc" id="title11" for="Field11">
+                            Municipio                            
+                            <img src="images/loading_animated2.gif" width="48" height="48" style="display:none" id="loader1"/></label>
+                        </label>
+                        <div id="div-contenidos">
+                            <!-- <select name='muni' class='field select medium' tabindex='6'> -->
+                                <?=$muni ?>
+                            <!--</select> -->
+                        </div>
+                        <p class="instruct" id="instruct11"><small>Seleccione el municipio al que pertenece</small></p>
+                    </li>
+                    <li id="foli18" class="notranslate      ">
+                        <label class="desc" id="title18" for="Field18">
+                            Direcci&oacute;n
+                            <span id="req_18" class="req">*</span>
+                        </label>
+                        <div>
+                            <input id="Field18" name="direccion_remitente" type="text" class="field text large" value="" maxlength="255" tabindex="5" onkeyup="" required />
+                        </div>
+                        <p class="instruct" id="instruct18"><small>Ingrese la direcci&oacute;n de recidencia</small></p>
+                    </li><li id="foli19" class="notranslate      ">
+                        <label class="desc" id="title19" for="Field19">
+                            N&uacute;mero de telefono
+                        </label>
+                        <div>
+                            <input id="Field19" class="field text medium" name="telefono_remitente" tabindex="6" type="tel" maxlength="255" value="" /> 
+                        </div>
+                        <p class="instruct" id="instruct19"><small>Ingrese su n&uacute;mero telefonico</small></p>
+                    </li><li id="foli20" class="notranslate      ">
+                        <label class="desc" id="title20" for="Field20">
+                            Correo electr&oacute;nico
+                            <span id="req_19" class="req">*</span>
+                        </label>
+                        <div>
+                            <input id="Field20" name="email" type="email" spellcheck="false" class="field text medium" value="" maxlength="255" tabindex="7" required/> 
+                        </div>
+                        <p class="instruct" id="instruct20"><small>Ingrese su direcci&oacute;n de correo electronico (ej: juanito@mail.com)</small></p>
+                    </li><li id="foli21" class="notranslate section      ">
+                        <section>
+                            <h3 id="title21">
+                            </h3>
+                        </section>
+                    </li><li id="foli22" class="notranslate       ">
+                        <label class="desc" id="title22" for="Field22">
+                            Tipo de solicitud
+                            <span id="req_22" class="req">*</span>
+                        </label>
+                        <div>
+                            <select id="Field22" name="tipo" class="field select medium" tabindex="8" required> 
+                                <option value="" > Seleccionar </option>
+                                <?= $tipo ?>
+                            </select>
+                        </div>
+                        <p class="instruct" id="instruct22"><small>Ingrese el tipo de su solicitud para que sea mas f&aacute;cil de identificar</small></p>
+                    </li>
+                    <li id="foli23" 		class="   ">
+                      <label class="desc" id="title23" for="label6">
+                          Asunto
+                          <span id="req_23" class="req">*</span>
+                      </label>                        
+                      <div>
+                        <input id="label6" name="asunto" type="text" class="field text large" value="" maxlength="255" tabindex="9" required/>
+                      </div>
+                      <p class="instruct" id="instruct20"><small>Ingrese el asunto de su solicitud</small></p>
+                    </li>
+                    <li id="foli24" class="    ">
+                        <label class="desc" id="title24" for="Field111">
+                            Descripci&oacute;n
+                            <span id="req_24" class="req">*</span>
+                        </label>
+                        <div>
+                            <textarea id="desc" 
+                                name="desc" 
+                                class="field textarea small" 
+                                rows="10" cols="50"
+                                tabindex="10"
+                                required
+                                 ></textarea>
+                        </div>
+                        <p class="instruct" id="instruct20"><small>Ingrese una descripci&oacute;n de la solicitud que esta realizando</small></p>
+                    </li>
+                    <li class="buttons ">
+                        <div>
 
-  <label class="desc" id="title109" for="Field109">Tipo de Solicitud </label>
-  <div>
-    <select id="tipo" name="tipo" class="field select maximun" tabindex="18">
-	  <?= $tipo ?>
-    </select>
-    &nbsp;<font color="#FF0000">*</font>  </div>
-</li>
-<li id="foli4" 		class="   ">
-  <label class="desc" id="title4" for="label7">Referente al Radicado No. (solo numeros, 14 d&iacute;gitos)<img src="images/loading_animated2.gif" width="48" height="48" style="display:none" id="loader3"/> </label>
-  <div>
-    <input id="label7" 			name="radicado" 			type="text" 			class="field text large" 			value="" 			maxlength="255" 			tabindex="4" onchange="trae_radicado()" onkeypress="return alpha(event,numbers);"/>
-  </div>
-  <div id="div-contenidos3" style="display:none"></div>
-</li>
-<li id="foli4" 		class="   ">
-  <label class="desc" id="title4" for="label6">Asunto</label>
-  <div>
-    <input id="label6" 			name="asunto" 			type="text" 			class="field text large" 			value="" 			maxlength="255" 			tabindex="4" />
-    &nbsp;<font color="#FF0000">*</font>  </div>
-</li>
-<li id="foli111" 
-		class="    ">
-	
-	
-	<label class="desc" id="title111" for="Field111">Descripci&oacute;n</label>
-	
-	<div>
-				<textarea id="desc" 
-			name="desc" 
-			class="field textarea small" 
-			rows="10" cols="50"
-			tabindex="5"
-			 ></textarea>
-			&nbsp;<font color="#FF0000">*</font>			</div>
-	</li>
+                            <input id="saveForm" name="saveForm" class="btTxt submit" 
+                                   type="submit" value="Enviar"
+                                   />
+                            <input type="button" name="cerrar" value="Cerrar" onclick="window.location = 'http://www.metrocali.gov.co' " />
+                        </div>
+                    </li>
+                    
+                </ul>
+            </form> 
 
+        </div><!--container-->
 
-<li class="buttons">
-				<input id="saveForm" type="submit" value="Enviar" onclick="return valida_form();" />
-	            <input name="button" type="button" id="button" onclick="window.close();" value="Cancelar" />
-</li>
-
-	<li style="display:none">
-		<label for="comment">No llene esto</label>
-		<textarea name="comment" id="comment" rows="1" cols="1"></textarea>
-	</li>
-</ul>
-</form>
-
-</div><!--container-->
-	
-</body>
+        <a class="powertiny" href="http://wufoo.com/form-builder/" title="Powered by Wufoo"
+           style="display:block !important;visibility:visible !important;text-indent:0 !important;position:relative !important;height:auto !important;width:95px !important;overflow:visible !important;text-decoration:none;cursor:pointer !important;margin:0 auto !important">
+            <span style="background:url(./images/powerlogo.png) no-repeat center 7px; margin:0 auto;display:inline-block !important;visibility:visible !important;text-indent:-9000px !important;position:static !important;overflow: auto !important;width:62px !important;height:30px !important">Wufoo</span>
+            <b style="display:block !important;visibility:visible !important;text-indent:0 !important;position:static !important;height:auto !important;width:auto !important;overflow: auto !important;font-weight:normal;font-size:9px;color:#777;padding:0 0 0 3px;">Designed</b>
+        </a>
+    </body>
 </html>
