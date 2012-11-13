@@ -73,7 +73,13 @@ include('./formulario_sql.php');
                   enctype="multipart/form-data" method="GET" action="formulariotx.php" name="quejas">
 
                 <header id="header" class="info">
-                    <center><img src='../logoEntidad.gif' height="150" width="190"></center>
+                    <center> 
+                        <img src="images/orfeologo.png" height="60" width="200" >
+                            <br>
+                        <a href="http://www.metrocali.gov.co">
+                            <img src='../logoEntidad.gif' height="150" width="190">
+                        </a>
+                    </center>
                     <h4><?=$db->entidad_largo?></h4>
                     <h2>Formulario Solicitudes, Quejas y Reclamos</h2>
                     <div></div>
@@ -216,6 +222,7 @@ include('./formulario_sql.php');
                             <input id="saveForm" name="saveForm" class="btTxt submit" 
                                    type="submit" value="Enviar"
                                    />
+                            <input type="button" name="cerrar" value="Cerrar" onclick="window.location = 'http://www.metrocali.gov.co' " />
                         </div>
                     </li>
                     

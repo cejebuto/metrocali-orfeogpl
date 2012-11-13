@@ -263,7 +263,7 @@ input.text,input.search,textarea.textarea
     background-image: url(../images/fieldbg.gif) ;
     background-repeat: repeat-x;
     background-position: top center;
-    background-color: #ffb10f;
+    background-color: #fefefe;
 }
 
 input.nospin::-webkit-inner-spin-button,input.nospin::-webkit-outer-spin-button
@@ -273,7 +273,7 @@ input.nospin::-webkit-inner-spin-button,input.nospin::-webkit-outer-spin-button
 }
 select.select
 {
-    background-color: #ffb10f;
+    background-color: #fefefe;
 	padding: 1px 0 0 0;
 }
 input.search

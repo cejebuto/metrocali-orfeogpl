@@ -76,10 +76,10 @@ $muni.="</select>";
 //para seleccionar el tipo de documento de identificación
 
 $list_tipo_doc = "";
-$sql_list_tipo_doc = "select distinct * from tipo_doc_identificacion ";
+$sql_list_tipo_doc = "select distinct * from tipo_doc_identificacion where tdid_desc != 'Nit' and tdid_desc != 'Nuir'";
 $rs_list_tipo_doc=$db->conn->Execute($sql_list_tipo_doc);
 while (!$rs_list_tipo_doc->EOF){
-    $list_tipo_doc.= "<option value='".$rs_list_tipo_doc->fields['TDID_CODI']."'>".$rs_list_tipo_doc->fields['TDID_DESC']."</option>";
+    $list_tipo_doc.= "<option value='".$rs_list_tipo_doc->fields['TDID_CODI']."'>".$rs_list_tipo_doc->fields['TDID_DESC']."</option>\n";
     $rs_list_tipo_doc->MoveNext();
 }
 
