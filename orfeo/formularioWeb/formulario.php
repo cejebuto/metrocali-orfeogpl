@@ -218,6 +218,16 @@ include('./formulario_sql.php');
                         </div>
                         <p class="instruct" id="instruct20"><small>Ingrese una descripci&oacute;n de la solicitud que esta realizando</small></p>
                     </li>
+                    <li id="foli25" class="    ">
+                        <label class="desc" id="title24" for="Field111">
+                            Opcional: Subir un archivo de Anexo                            
+                        </label>
+                        <div>
+                            <input id="seleccionar" type="file" name="seleccionar" value="0" width="500" onclick=" $var = document.getElementById('seleccionar').value; alert($var);" />
+
+                        </div>
+                        <p class="instruct" id="instruct20"><small>Ingrese una descripci&oacute;n de la solicitud que esta realizando</small></p>
+                    </li>
                     <li class="buttons ">
                         <div>
 

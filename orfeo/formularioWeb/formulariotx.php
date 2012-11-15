@@ -23,11 +23,20 @@ $db->conn->SetFetchMode(ADODB_FETCH_ASSOC);
 //$db->conn->debug = true;
 
 session_start();
+
+var_dump($_GET);
+echo "<br>";
+var_dump($_POST);
+echo "<br>";
+var_dump($_SESSION);
+echo "<br><br>Valores";
+
 //******************************************************************************
 //Adicionado por metrocali
 
 $_SESSION['usuaRecibeWeb'] = 3;
 $_SESSION['depeRadicaFormularioWeb'] =900;
+$_SESSION["secRadicaFormularioWeb"]=""; // Osea que usa la Secuencia sec_tp2_
 //******************************************************************************
 $_SESSION['nombre_remitente']=$_GET['nombre_remitente'];
 $_SESSION['apellidos_remitente']=$_GET['apellidos_remitente'];
@@ -54,9 +63,9 @@ $_SESSION['documento_destino']=$_GET['documento_destino'];
 /*if(!$_GET['tipo_doc_id']) {$_GET['tipo_doc_id']=0; echo "no ahi tipo<br>";}
 $_SESSION['tipo_doc_codi'] = $_GET['tipo_doc_id']; // agregado por MetroCali S.A.*/
 
-$numero=substr('000000'.$db->conn->GenID('SECR_TP2_'.$_SESSION['secRadicaFormularioWeb']),-6);
-$num_dir=$db->conn->GenID('SEC_DIR_DIRECCIONES');
-$num_ciu=$db->conn->GenID('SEC_CIU_CIUDADANO');
+//$numero=substr('000000'.$db->conn->GenID('SECR_TP2_'.$_SESSION['secRadicaFormularioWeb']),-6);
+//$num_dir=$db->conn->GenID('SEC_DIR_DIRECCIONES');
+//$num_ciu=$db->conn->GenID('SEC_CIU_CIUDADANO');
 
 // $depeRadicaFormularioWeb;  // Es radicado en la Dependencia 900
 // $usuaRecibeWeb ; // Usuario que Recibe los Documentos Web
