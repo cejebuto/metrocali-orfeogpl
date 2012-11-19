@@ -82,9 +82,9 @@ if($_POST){
 /*if(!$_POST['$tipo_doc_id']) {$_POST['$tipo_doc_id']=0; echo "no ahi tipo<br>";}
 $_SESSION['tipo_doc_codi'] = $tipo_doc_id; // agregado por MetroCali S.A.*/
 
-$numero=substr('000000'.$db->conn->GenID('SECR_TP2_'.$_SESSION['secRadicaFormularioWeb']),-6);
-$num_dir=$db->conn->GenID('SEC_DIR_DIRECCIONES');
-$num_ciu=$db->conn->GenID('SEC_CIU_CIUDADANO');
+//$numero=substr('000000'.$db->conn->GenID('SECR_TP2_'.$_SESSION['secRadicaFormularioWeb']),-6);
+//$num_dir=$db->conn->GenID('SEC_DIR_DIRECCIONES');
+//$num_ciu=$db->conn->GenID('SEC_CIU_CIUDADANO');
 
 // $depeRadicaFormularioWeb;  // Es radicado en la Dependencia 900
 // $usuaRecibeWeb ; // Usuario que Recibe los Documentos Web
@@ -95,7 +95,7 @@ $numeroRadicado = date('Y').$_SESSION['depeRadicaFormularioWeb'].$numero."2";
 
 //inserta ciudadano
 $ins_ciu="insert into sgd_ciu_ciudadano values(2,".$num_ciu.",'".strtoupper($_SESSION['nombre_remitente'])."','".strtoupper($_SESSION['direccion_remitente'])."','".strtoupper($_SESSION['apellidos_remitente'])."','','".$_SESSION['telefono_remitente']."','".$_SESSION['email']."',".$_SESSION['muni'].",".$_SESSION['depto'].",'".$_SESSION['cedula']."', DEFAULT, DEFAULT "/*,".$_SESSION['tipo_doc_codi']*/.")";
-$rs_ins_ciu=$db->conn->Execute($ins_ciu);
+//$rs_ins_ciu=$db->conn->Execute($ins_ciu);
 
 
 //inserta en sgd_dir_direcciones
@@ -136,27 +136,24 @@ $ins_rad.="'/$anoRad/$depeRadicaFormularioWeb/$numeroRadicado".".pdf'
 include ("scriptCarpeta.php");
 bodegaCrear($anoRad, $depeRadicaFormularioWeb);
 //******************************************************************************
-$rs_ins_rad=$db->conn->Execute($ins_rad);
-$rs_ins_dir=$db->conn->Execute($ins_dir);
+//$rs_ins_rad=$db->conn->Execute($ins_rad);
+//$rs_ins_dir=$db->conn->Execute($ins_dir);
 //Inserta historico
 $ins_his="insert into hist_eventos (depe_codi,hist_fech,usua_codi,radi_nume_radi,hist_obse,usua_codi_dest,usua_doc,sgd_ttr_codigo,hist_doc_dest,depe_codi_dest) 
 values($dependenciaRad,to_date('".date('d')."/".date('m')."/".date('Y')." ".date('h').":".date('m').":".date('s')."','dd/mm/yyyy hh24:mi:ss'),6,$numeroRadicado,'RADICACION PAGINA WEB',".$_SESSION['usuario'].",'22222222',2,'".$_SESSION['documento_destino']."',".$_SESSION['dependencia'].")";
-$rs_ins_his=$db->conn->Execute($ins_his);
+//$rs_ins_his=$db->conn->Execute($ins_his);
 
 /**************************AGREGADO POR METRO CALI S.A.************************/
 if(is_uploaded_file($_FILES["seleccionar"]["tmp_name"])){//si existe un anexo
-    include_once 'uploadArchivo.php';
-    
+    include 'uploadArchivo.php';
     anexar_radicado_web($numeroRadicado, $_SESSION['usuaRecibeWeb'], $_SESSION['depeRadicaFormularioWeb']);    
 }
 /**********************FIN AGREGADO POR METRO CALI S.A.************************/
-
-
 //num radicado completo
 $_SESSION['radcom']=$numeroRadicado;
 
 //AGREGADO POR METRO CALI S.A. PARA CREAR AUTOMATICAMENTE EL PDF
-$veronline="no";
+$veronline="escritura";
 include 'formulariopdf.php';
 
 ?>

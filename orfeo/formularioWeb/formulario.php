@@ -227,7 +227,7 @@ include('./formulario_sql.php');
                             <input id="seleccionar" type="file" name="seleccionar" value="0" width="500" onclick="" /> <!-- falta validador -->
 
                         </div>
-                        <p class="instruct" id="instruct20"><small>Ingrese una descripci&oacute;n de la solicitud que esta realizando</small></p>
+                        <p class="instruct" id="instruct20"><small>Puede adicionar un archivo a su solicitud. Si tiene varios archivos puede comprimirlos en un zip.</small></p>
                     </li>
                     <li class="buttons ">
                         <div>

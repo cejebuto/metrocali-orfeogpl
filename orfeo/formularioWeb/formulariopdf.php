@@ -21,7 +21,7 @@ if($veronline=="si"){//AGREGADO POR METRO CALI S.A.
     header('Accept-Ranges: bytes');
     @readfile($file);
 
-}else{
+}else if($veronline=="escritura"){//por seguridad
     require('barcode.php');
     include('funciones.php');
 
@@ -40,6 +40,8 @@ if($veronline=="si"){//AGREGADO POR METRO CALI S.A.
     $radi_codi_barras = $_SESSION['entidad']." Rad No. ".$_SESSION['radcom'];
     $radi_fecha_barras = "Fecha: ".date('d')."/".date('m')."/".date('Y')." ".date('h:i:s');
     $radi_ciufech_doc = $muni_nomb.", ".date('d')." de ".nombremes(date('m'))." de ".date('Y');
+    $radi_asunt_doc = "Asunto : ".strtoupper($_SESSION['asunto']);
+    $radi_anexo_doc = "Ver Anexo: ".$_SESSION['namefile_anexo_doc'];
     //*****************************************
 
 
@@ -58,9 +60,11 @@ if($veronline=="si"){//AGREGADO POR METRO CALI S.A.
     $pdf->Text(12,105,$_SESSION['entidad']);
     $pdf->SetFont('','');
     $pdf->Text(12,109,"Cali");
-    $pdf->Text(12,119,"Asunto : ".strtoupper($_SESSION['asunto']));
+    $pdf->Text(12,119,$radi_asunt_doc);
     $pdf->SetXY(11,125);
     $pdf->MultiCell(0,4,$_SESSION['desc'],0);
+    if($_SESSION['namefile_anexo_doc'])$pdf->Text(12,216,$radi_anexo_doc);
+    unset($_SESSION['namefile_anexo_doc']);// se quita la asignacion de la variable
     $pdf->Text(12,220,"Atentamente,");
     $pdf->SetFont('','B');
     $pdf->Text(12,246,strtoupper($_SESSION['nombre_remitente'])." ".strtoupper($_SESSION['apellidos_remitente']));
@@ -107,7 +111,7 @@ if($veronline=="si"){//AGREGADO POR METRO CALI S.A.
 
     // muestra el pdf
     //if($veronline)
-    $pdf->Output();
+    //$pdf->Output();
 
 }
 ?>

@@ -1,4 +1,4 @@
-<?php
+<?
 
 /*
  * Creado por Metro Cali S.A.
@@ -138,8 +138,8 @@ function anexar_radicado_web($numeroRadicado,$krd,$dependencia,$radicado_rem,$an
                         ,sgd_dir_tipo
                         ,anex_depe_creador                        
                         ,anex_fech_anex
-                        ,SGD_APLI_CODI
-                        ,SGD_TRAD_CODIGO
+                        ".//,SGD_APLI_CODI
+                        ",SGD_TRAD_CODIGO
                         ,SGD_EXP_NUMERO)
                      values (
                            $radicado_rem  
@@ -157,8 +157,8 @@ function anexar_radicado_web($numeroRadicado,$krd,$dependencia,$radicado_rem,$an
                          ,$radicado_rem
                          ,$dependencia                         
                          ,$sqlFechaHoy
-                         ,$aplinteg    
-                         ,$tpradic
+                         ".//,$aplinteg    
+                         ",$tpradic
                          ,'$expAnexo')";
 
     //echo $isql;
@@ -166,7 +166,9 @@ function anexar_radicado_web($numeroRadicado,$krd,$dependencia,$radicado_rem,$an
     $db->query($isql);
     include_once 'scriptCarpeta.php';
     bodegaCrearAnexos($anoRad, $dependencia, "docs");//se crean las carpetas sino existen
-    // Where the file is going to be placed 
+    //pra indicarse en el pdf generador (ver formulariopdf.php)
+    $_SESSION['namefile_anexo_doc'] = substr(trim($archivo),0,4)."/".substr(trim($archivo),4,3)."/docs/".trim(strtolower($archivoconversion));
+    // Where the file is going to be placed     
     $target_path = "$ruta_raiz/bodega/".substr(trim($archivo),0,4)."/".substr(trim($archivo),4,3)."/docs/";
     //$target_path = "$ruta_raiz/bodega/$anoRad/$dependencia/docs/";
     /* Add the original filename to our target path.  
