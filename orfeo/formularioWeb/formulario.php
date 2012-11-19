@@ -70,7 +70,7 @@ include('./formulario_sql.php');
             
 
             <form id="form1" class="wufoo leftLabel page" autocomplete="off" 
-                  enctype="multipart/form-data" method="GET" action="formulariotx.php" name="quejas">
+                  enctype="multipart/form-data" method="POST" action="formulariotx.php" name="quejas">
 
                 <header id="header" class="info">
                     <center> 
@@ -223,7 +223,8 @@ include('./formulario_sql.php');
                             Opcional: Subir un archivo de Anexo                            
                         </label>
                         <div>
-                            <input id="seleccionar" type="file" name="seleccionar" value="0" width="500" onclick=" $var = document.getElementById('seleccionar').value; alert($var);" />
+                            <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
+                            <input id="seleccionar" type="file" name="seleccionar" value="0" width="500" onclick="" /> <!-- falta validador -->
 
                         </div>
                         <p class="instruct" id="instruct20"><small>Ingrese una descripci&oacute;n de la solicitud que esta realizando</small></p>

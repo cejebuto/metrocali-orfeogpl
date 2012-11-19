@@ -41,4 +41,30 @@ function bodegaCrear($anoRad, $depeRadicaFormularioWeb) {
     }
 }
 
+/* 
+ * @param $anoRand la carpeta que indica el año de creación de los docuementos
+ * @param $depeRadicaFormularioWeb indica la dependencia que lo creo o a la que esta dirigido el documento
+ * @param $carpanexos indica la carpeta donde se almacenan los anexos
+ * 
+ * Función que crea el conjunto de carpetas que se van radicando desde el 
+ * formularioWeb para los anexos. Si existen no se crea ni renombra nada. De lo contrario se va
+ * construyendo dinamicamente. Llama a bodegaCrear.
+ * 
+ * El estandar de creación es Año de radicación y el numero de la dependencia y la carpeta docs.
+ * En la carpeta bodega que esta en un nivel superior
+ * Ej: raiz/bodega/2012/900/
+ * Los permisos son: rwxr-xr-x del usuario apache y grupo apache
+ */
+function bodegaCrearAnexos($anoRad, $depeRadicaFormularioWeb, $carpanexos) {
+    if(!$carpanexos || $carpanexos=='') $carpanexos= "docs";
+    bodegaCrear($anoRad, $depeRadicaFormularioWeb);    
+    $path_bodega = "../bodega/".$anoRad."/".$depeRadicaFormularioWeb."/";
+
+    if (file_exists($path_bodega . $carpanexos)) {
+        //existe la carpeta
+    } else {
+        mkdir($path_bodega . $carpanexos);        
+    }
+}
+
 ?>
