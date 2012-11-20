@@ -26,6 +26,7 @@ include "../config.php";
 $_SESSION["depeRadicaFormularioWeb"]=$depeRadicaFormularioWeb;  // Es radicado en la Dependencia 900
 $_SESSION["usuaRecibeWeb"]=$usuaRecibeWeb; // Usuario que Recibe los Documentos Web
 $_SESSION["secRadicaFormularioWeb"]=$secRadicaFormularioWeb; // Osea que usa la Secuencia sec_tp2_900
+if(!$_SESSION["entidad"])$_SESSION["entidad"]=$entidad;
 $inicio = true; //variable añadida por Metro Cali S.A. para colocar predeterminadamente Depto y Muni. (Valle y Cali)
 $db = new ConnectionHandler($ruta_raiz);
 $db->conn->SetFetchMode(ADODB_FETCH_ASSOC);

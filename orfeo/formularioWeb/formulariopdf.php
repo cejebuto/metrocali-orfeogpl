@@ -42,6 +42,13 @@ if($veronline=="si"){//AGREGADO POR METRO CALI S.A.
     $radi_ciufech_doc = $muni_nomb.", ".date('d')." de ".nombremes(date('m'))." de ".date('Y');
     $radi_asunt_doc = "Asunto : ".strtoupper($_SESSION['asunto']);
     $radi_anexo_doc = "Ver Anexo: ".$_SESSION['namefile_anexo_doc'];
+    $radi_ciu_nombre= strtoupper(utf8_decode($_SESSION['nombre_remitente']))." ".strtoupper(utf8_decode($_SESSION['apellidos_remitente']));
+    $radi_ciu_docu = "" .$_SESSION['cedula'];
+    $radi_ciu_dir = utf8_decode("Dirección: ").$_SESSION['direccion_remitente'];
+    $radi_ciu_tel = "Telefono: ".$_SESSION['telefono_remitente'];
+    $radi_ciu_mail = "Email: ".$_SESSION['email'];
+    $radi_url_consulta = "http://172.1.1.79/orfeo/consultaWeb/";
+    $radi_consulta_doc = utf8_decode("Para consultar los radicados dirijase a ").$radi_url_consulta;
     //*****************************************
 
 
@@ -67,16 +74,18 @@ if($veronline=="si"){//AGREGADO POR METRO CALI S.A.
     unset($_SESSION['namefile_anexo_doc']);// se quita la asignacion de la variable
     $pdf->Text(12,220,"Atentamente,");
     $pdf->SetFont('','B');
-    $pdf->Text(12,246,strtoupper($_SESSION['nombre_remitente'])." ".strtoupper($_SESSION['apellidos_remitente']));
+    $pdf->Text(12,246,$radi_ciu_nombre);
     $pdf->SetFont('','');
-    $pdf->Text(12,250,$_SESSION['cedula']);
-    $pdf->Text(12,254,$_SESSION['direccion_remitente']);
+    $pdf->Text(12,250,$radi_ciu_docu);
+    $pdf->Text(12,254,$radi_ciu_dir);
     if($_SESSION['telefono_remitente']!=0){
-        $pdf->Text(12,258,$_SESSION['telefono_remitente']);
-        $pdf->Text(12,262,$_SESSION['email']);
+        $pdf->Text(12,258,$radi_ciu_tel);
+        $pdf->Text(12,262,$radi_ciu_mail);
     }else{
-        $pdf->Text(12,258,$_SESSION['email']);
+        $pdf->Text(12,258,$radi_ciu_mail);
     }
+    $pdf->SetFont('','B');
+    $pdf->Text(12,268,$radi_consulta_doc);
     //guarda documento en un SERVIDOR
      // $pdf->Output("../bodega/tmp/".$_SESSION['radcom'].".pdf",'F');
     $pdf->Output("../bodega/$rutaPdf",'F');
