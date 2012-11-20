@@ -31,7 +31,7 @@ if($veronline=="si"){//AGREGADO POR METRO CALI S.A.
     include($ruta_raiz.'/class_control/Municipio.php');
     if(!$db) $db = new ConnectionHandler($ruta_raiz);
     $db->conn->SetFetchMode(ADODB_FETCH_ASSOC);
-    $db->conn->debug=true;
+    //$db->conn->debug=true;
     $municlass = new Municipio($db);
     $municlass->municipio_codigo($_SESSION['depto'],$_SESSION['muni'] );
     $muni_nomb = $municlass->get_muni_nomb();
@@ -63,7 +63,7 @@ if($veronline=="si"){//AGREGADO POR METRO CALI S.A.
     $pdf->Text(12,119,$radi_asunt_doc);
     $pdf->SetXY(11,125);
     $pdf->MultiCell(0,4,$_SESSION['desc'],0);
-    if($_SESSION['namefile_anexo_doc'])$pdf->Text(12,216,$radi_anexo_doc);
+    if($_SESSION['namefile_anexo_doc'])$pdf->Text(12,212,$radi_anexo_doc);
     unset($_SESSION['namefile_anexo_doc']);// se quita la asignacion de la variable
     $pdf->Text(12,220,"Atentamente,");
     $pdf->SetFont('','B');

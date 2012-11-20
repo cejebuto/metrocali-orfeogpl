@@ -17,8 +17,8 @@ foreach ($_POST as $key => $valor)   ${$key} = $valor;
 
 /* 
  * @param $numeroRadicado el numero de radicado a anexar
- * @param $krd el codigo del usuario al que se envia (el usuario web. filtrador)
- * @param $dependencia la dependencia del usuario web (900)
+ * @param $krdWeb el codigo del usuario al que se envia (el usuario web. filtrador)
+ * @param $dependenciaWeb la dependencia del usuario web (900)
  * @param $radicado_rem opcional sgd_dir_direcciones el valor sgd_dir_tipo(ciudadano valor = 1)
  * @param $anex_salida opcional valor por defecto 1
  * @param $tpradic opcional valor por defecto 2, indica la bandeja de entrada (Entrada = 2)
@@ -34,9 +34,10 @@ foreach ($_POST as $key => $valor)   ${$key} = $valor;
  * Ej: raiz/bodega/2012/900/docs/
  * Los permisos son: rwxr-xr-x del usuario apache y grupo apache
  */
-function anexar_radicado_web($numeroRadicado,$krd,$dependencia,$radicado_rem,$anex_salida,$tpradic)
+function anexar_radicado_web($numeroRadicado,$krdWeb,$dependenciaWeb,$radicado_rem,$anex_salida,$tpradic)
     {
-   
+    $default_krd_login = "FILTRADOR";
+    $default_dependencia = 900;
     $ruta_raiz="..";
     if(!$numeroRadicado)return 1; //No se tiene un Numero de radicado para anexar
     
@@ -44,20 +45,39 @@ function anexar_radicado_web($numeroRadicado,$krd,$dependencia,$radicado_rem,$an
     require_once("$ruta_raiz/include/db/ConnectionHandler.php");
     include_once("$ruta_raiz/class_control/anexo.php");
     include_once("$ruta_raiz/class_control/anex_tipo.php");
+    include_once("$ruta_raiz/class_control/usuario.php");
     
     if (!$db)
         $db = new ConnectionHandler($ruta_raiz);
-    $db->conn->debug = true;
     $db->conn->SetFetchMode(ADODB_FETCH_ASSOC);
+    //$db->conn->debug = true;
+
 
 //inicializando Variables por defecto
 
     $anex = & new Anexo($db);
     $anexTip = & new Anex_tipo($db);
+    $usua= & new Usuario($db);
+    
+    //CONSULTANDO EL USUA_LOGIN PARA EL CAMPO ANEX_CREADOR DE LA TABLA ANEXOS
+    
+    
+    if(!$dependenciaWeb)$dependenciaWeb = $_SESSION["depeRadicaFormularioWeb"];    
+    if($krdWeb) {
+        if($usua->usuarioDependecina($dependenciaWeb, $krdWeb)){
+            $krdWeb = $usua->get_usua_login();
+        }else{//no existe el usuario en esa dependencia
+            $krdWeb=$default_krd_login;//POR DEFECTO EL USUARIO QUE RECIBE LOS DOCUMENTOS VIA WEB
+            $dependenciaWeb=$default_dependencia;
+        }        
+    }else{
+        if($usua->usuarioDependecina($dependenciaWeb, $_SESSION["usuaRecibeWeb"])){
+            $krdWeb = $usua->get_usua_login();
+        }else{//no existe el usuario de la variable global en esa dependencia
+            $krdWeb=$default_krd_login;//POR DEFECTO EL USUARIO QUE RECIBE LOS DOCUMENTOS VIA WEB
+            $dependenciaWeb=$default_dependencia;
 
-    if(!$krd) $krd = $_SESSION["usuaRecibeWeb"];
-    if(!$dependencia)$dependencia = $_SESSION["depeRadicaFormularioWeb"];
-
+        }     }
     
     if(!$radicado_rem)$radicado_rem = 1; //Este valor indica que es un ciudadano, ver la tabla
     //sgd_dir_direcciones el valor sgd_dir_tipo
@@ -148,14 +168,14 @@ function anexar_radicado_web($numeroRadicado,$krd,$dependencia,$radicado_rem,$an
                          ,$tipo    
                          ,$tamano     
                          ,'$auxsololect'
-                         ,'$krd'     
+                         ,'$krdWeb'     
                          ,'$descr' 
                          ,$auxnumero 
                          ,'$archivoconversion'
                          ,'N'         
                          ,$anex_salida
                          ,$radicado_rem
-                         ,$dependencia                         
+                         ,$dependenciaWeb                         
                          ,$sqlFechaHoy
                          ".//,$aplinteg    
                          ",$tpradic
@@ -165,12 +185,12 @@ function anexar_radicado_web($numeroRadicado,$krd,$dependencia,$radicado_rem,$an
     
     $db->query($isql);
     include_once 'scriptCarpeta.php';
-    bodegaCrearAnexos($anoRad, $dependencia, "docs");//se crean las carpetas sino existen
+    bodegaCrearAnexos($anoRad, $dependenciaWeb, "docs");//se crean las carpetas sino existen
     //pra indicarse en el pdf generador (ver formulariopdf.php)
     $_SESSION['namefile_anexo_doc'] = substr(trim($archivo),0,4)."/".substr(trim($archivo),4,3)."/docs/".trim(strtolower($archivoconversion));
     // Where the file is going to be placed     
     $target_path = "$ruta_raiz/bodega/".substr(trim($archivo),0,4)."/".substr(trim($archivo),4,3)."/docs/";
-    //$target_path = "$ruta_raiz/bodega/$anoRad/$dependencia/docs/";
+    //$target_path = "$ruta_raiz/bodega/$anoRad/$dependenciaWeb/docs/";
     /* Add the original filename to our target path.  
       Result is "uploads/filename.extension" */
     if (move_uploaded_file($_FILES['seleccionar']['tmp_name'], $target_path.trim(strtolower($archivoconversion)))) {
@@ -183,10 +203,10 @@ function anexar_radicado_web($numeroRadicado,$krd,$dependencia,$radicado_rem,$an
 /* //Pruebas
 if($subir=="si"){
     $numeroRadicado = 20129000000122;
-    $dependencia=900;
-    $krd=3;//el usuario web
+    $dependenciaWeb=900;
+    $krdWeb=3;//el usuario web
     $namefile = $_FILES['seleccionar']['name'];
-    $result = anexar_radicado_web($numeroRadicado, $krd, $dependencia );
+    $result = anexar_radicado_web($numeroRadicado, $krdWeb, $dependenciaWeb );
     if($result!=1){
         echo "Se guardo el archivo ".$result;
     }else{
