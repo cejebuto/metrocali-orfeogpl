@@ -1,7 +1,7 @@
 metrocali-orfeogpl
 ==================
 
-Manejo de versiones de OrfeoGPL adaptado a las necesidades de la empresa Metro Cali S.A. El codigo aqui desarrollado es de libre uso y dsitribución bajo la misma licencia que trabaja OrfeoGPL.
+Manejo de versiones de OrfeoGPL adaptado a las necesidades de la empresa Metro Cali S.A. El codigo aqui desarrollado es de libre uso y dsitribución bajo la misma licencia que trabaja OrfeoGPL. En el momento no se cuenta en el respositorio con toda las paginas y la estructura, se van adicionando módulos a medida que estos van siendo modificados. Para obtener la version de orfeo por favor visitar la pagina oficial http://orfeogpl.org/ata/
 
 
 ¿Qué es Orfeo?
