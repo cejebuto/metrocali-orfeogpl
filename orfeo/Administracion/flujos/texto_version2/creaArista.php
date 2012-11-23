@@ -40,6 +40,7 @@ if($_POST["trad"]) $trad = $_POST["trad"];
 if($_POST["tipificacion"]) $tipificacion = $_POST["tipificacion"];
 if($_POST["automatico"]) $automatico = $_POST["automatico"];
 if($_POST["ClickCrea"]) $ClickCrea = $_POST["ClickCrea"];
+if($_POST["Click"]) $Click = $_POST["Click"];
 if($_POST["clickboton"]) $clickboton = $_POST["clickboton"];
 if($_POST["Button_x"]) $Button_x = $_POST["Button_x"];
 if($_POST["Button_y"]) $Button_y = $_POST["Button_y"];
@@ -58,7 +59,7 @@ if ( $tipificacion ) $deshabilitado =  ""; else $deshabilitado =  "disabled=true
     $db = new ConnectionHandler( "$ruta_raiz" );
     if (!defined('ADODB_FETCH_ASSOC'))define('ADODB_FETCH_ASSOC',2);
     $ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
-	//$db->conn->debug = true;
+	$db->conn->debug = true;
 	if( $_GET['proceso'] != '' ){
 		$procesoSelected = $_GET['proceso'];
 	}elseif ( $_POST['proceso'] != ''){
@@ -128,7 +129,8 @@ function consulta(componente){
 
 
 	function validarDatos()
-	{ 
+	{
+            
 		if(document.frmCrearArista.descripcionArista.value == "")
         {       alert("Debe ingresar la descripcion de la Conexion." );
                 document.frmCrearArista.descripcionArista.focus();
@@ -175,8 +177,11 @@ function consulta(componente){
                 
                 return false;
         }
-        
+        if (document.frmCrearArista.ClickCrea.value=="Crear"){
+            document.frmCrearArista.Click.value="Crear";
+        }
 	 	document.frmCrearArista.submit();
+                return true;
 	}
 	
 function Start(URL, WIDTH, HEIGHT)
@@ -259,10 +264,20 @@ function regresar(){
 	}elseif ($_POST['etapaCreaArista']) {
 		$etapaInicial = $_POST['etapaCreaArista'];
 	}
-	
-	if( ( $_POST['descripcionArista'] != '' &&  $_POST['codserie'] != null &&  $_POST['tsub'] != null &&  $_POST['tipo'] != null  &&  $_POST['codserie'] != 0 &&  $_POST['tsub'] != 0 &&  $_POST['tipo'] != 0 &&  $_POST['tipificacion'] != null &&  $_POST['tipificacion'] != '' && !$aristaAEliminar  && $ClickCrea == 'Crear') 
+	echo "INSERTANDO ARISTAS?<br><br>";
+        echo "desc ".$_POST['descripcionArista']."<br>";
+        echo "codserie ".$_POST['codserie']."<br>";
+        echo "tsub ".$_POST['tsub']."<br>";
+        echo "tipo ".$_POST['tipo']."<br>";
+        echo "tipif ".$_POST['tipificacion']."<br>";
+        echo "no delete ". !$aristaAEliminar."<br>";
+        echo "boton $ClickCrea <br>";
+        echo "<br>";
+	if( ( $_POST['descripcionArista'] != '' &&  $_POST['codserie'] != null &&  $_POST['tsub'] != null &&  $_POST['tipo'] != null  &&  $_POST['codserie'] != 0 &&  $_POST['tsub'] != 0 &&  $_POST['tipo'] != 0 &&  $_POST['tipificacion'] != null &&  $_POST['tipificacion'] != '' && !$aristaAEliminar  && $Click == 'Crear') 
 	||  ( $_POST['descripcionArista'] != '' &&  $_POST['codserie'] == 0 &&  $_POST['tsub'] == 0 &&  $_POST['tipo'] == 0 &&  $_POST['tipificacion'] == null && !$aristaAEliminar   && $ClickCrea == 'Crear')
 			 ){
+            
+            echo "entro<br>";
 			include "$ruta_raiz/include/tx/Proceso.php";
 	 		$flujo = new AristaFlujo( $db );
 			if( $_POST['tipificacion'] != ''){
@@ -276,6 +291,7 @@ function regresar(){
 	 		$flujo->initArista( $etapaInicial, $etapaFinal, $descripcionArista, $diasMinimo, $diasMaximo, $trad,$serieArista,$subserieArista, $tipo, $procesoSelected, $_POST['automatico'], $tipificacion );	
 
 			$resultadoInsercion = $flujo-> insertaArista(  );
+                        
 	}
 ?>
 <form name='frmCrearArista' action='creaArista.php?proceso=<?=$procesoSelected?>' method="post">
@@ -430,7 +446,8 @@ function regresar(){
 <table border=1 width=93% class=t_bordeGris align="center">
 	<tr class=timparr>
 	<td height="30" colspan="2" class="listado2"><span class="celdaGris"> <span class="e_texto1">
-	<center> <input class="botones" type="submit" Value="Crear"  onClick=" return validarDatos();"  name="ClickCrea"> </center> </span> </span>
+        <input type="hidden" Value="" name="Click">
+	<center> <input class="botones" type="button" Value="Crear"  onClick="return validarDatos();"  name="ClickCrea"> </center> </span> </span>
 	</td>
 	<td height="30" colspan="2" class="listado2"><span class="celdaGris">
 	<center><input class="botones" type=button name=Cerrar id=Cerrar Value=Cerrar onclick='cerrar();'></a></center>  </span>
