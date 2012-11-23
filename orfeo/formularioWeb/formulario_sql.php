@@ -88,7 +88,7 @@ while (!$rs_list_tipo_doc->EOF){
 
 //entidad
 if(isset($_GET['nit']))
-{
+{    
 $sql_entidad="select NOMBRE_DE_LA_EMPRESA,SIGLA_DE_LA_EMPRESA,IDENTIFICADOR_EMPRESA,NIT_DE_LA_EMPRESA from bodega_empresas where NIT_DE_LA_EMPRESA LIKE '%".trim($_GET['nit'])."%'";
 $rs_entidad=$db->conn->Execute($sql_entidad);
 $entidad='<strong>
@@ -96,10 +96,17 @@ $entidad='<strong>
 ';
 if($rs_entidad->RecordCount() != 0)
 {
-$entidad.=$rs_entidad->fields['NOMBRE_DE_LA_EMPRESA']." - ".$rs_entidad->fields['SIGLA_DE_LA_EMPRESA'];
-$entidad.='<input type="hidden" name="codigo_orfeo" value="'.$rs_entidad->fields['IDENTIFICADOR_EMPRESA'].'"></input><input type="hidden" name="sigla" value="'.$rs_entidad->fields['SIGLA_DE_LA_EMPRESA'].'"></input>';
-$entidad.=usuxent($rs_entidad->fields['IDENTIFICADOR_EMPRESA'],$rs_entidad->fields['NIT_DE_LA_EMPRESA'],$db);
-$valor=0;
+    if($rs_entidad->fields['NOMBRE_DE_LA_EMPRESA']){
+        $entidad.=$rs_entidad->fields['NOMBRE_DE_LA_EMPRESA']." - ".$rs_entidad->fields['SIGLA_DE_LA_EMPRESA'];
+        $entidad.='<input type="hidden" name="codigo_orfeo" value="'.$rs_entidad->fields['IDENTIFICADOR_EMPRESA'].'"></input><input type="hidden" name="sigla" value="'.$rs_entidad->fields['SIGLA_DE_LA_EMPRESA'].'"></input>';
+        $entidad.=usuxent($rs_entidad->fields['IDENTIFICADOR_EMPRESA'],$rs_entidad->fields['NIT_DE_LA_EMPRESA'],$db);
+        $valor=0;
+    }else{
+        $entidad.=$rs_entidad->fields['nombre_de_la_empresa']." - ".$rs_entidad->fields['sigla_de_la_empresa'];
+        $entidad.='<input type="hidden" name="codigo_orfeo" value="'.$rs_entidad->fields['identificador_empresaIDENTIFICADOR_EMPRESA'].'"></input><input type="hidden" name="sigla" value="'.$rs_entidad->fields['sigla_de_la_empresa'].'"></input>';
+        $entidad.=usuxent($rs_entidad->fields['identificador_empresa'],$rs_entidad->fields['nit_de_la_empresa'],$db);
+        $valor=0;
+    }
 }
 else
 {

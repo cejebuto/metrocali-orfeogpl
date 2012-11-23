@@ -72,7 +72,6 @@ include('./formulario_sql.php');
 
             <form id="form1" class="wufoo leftLabel page" autocomplete="off" 
                   enctype="multipart/form-data" method="POST" action="formulariotx.php" name="quejas">
-
                 <header id="header" class="info">
                     <center> 
                         <img src="images/orfeologo.png" height="60" width="200" >
