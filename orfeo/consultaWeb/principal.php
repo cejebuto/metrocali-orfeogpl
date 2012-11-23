@@ -77,7 +77,7 @@ preview = window.open(URL , "preview", windowprops);
 			FROM SGD_TPR_TPDCUMENTO 
 				where sgd_tpr_codigo='$tdoc'
 			";
-		$db->conn->debug=true;
+		//$db->conn->debug=true;
 		$rs=$db->query($isql);
 		if  (!$rs->EOF) 
 		{
