@@ -19,7 +19,7 @@ var $estiloExito = "class=titulos>";
 function Proceso( $db, $nombreProceso,$serieProceso = null, $subSerieProceso = null, 
 				  $flujoAutomatico = null,  $terminosProceso = null ){
 		$this->db = $db;
-//			$this->db->conn->debug = true;
+			$this->db->conn->debug = true;
 
 		$this->nombreProceso =  $nombreProceso;
 		$this->serieProceso = ( $serieProceso !=null ? $serieProceso : 'null' );

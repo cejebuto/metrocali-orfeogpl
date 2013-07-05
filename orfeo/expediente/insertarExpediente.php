@@ -33,7 +33,7 @@ if ( !$nurad )
 
 include_once( "$ruta_raiz/include/db/ConnectionHandler.php" );
 $db = new ConnectionHandler( "$ruta_raiz" );
-//$db->conn->debug = true;
+$db->conn->debug = true;
 include_once( "$ruta_raiz/include/tx/Historico.php" );
 include_once( "$ruta_raiz/include/tx/Expediente.php" );
 
